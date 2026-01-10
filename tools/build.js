@@ -93,7 +93,9 @@ const REGION_CONFIG = {
         let monthsHtml = generateIndexPage(
             `${config.label} - Select Month`,
             `../../`,
-            sortedMonths.map(m => ({ text: getMonthName(m), href: `${m}/index.html` }))
+            sortedMonths.map(m => ({ text: getMonthName(m), href: `${m}/index.html` })),
+            false,
+            `../../index.html`
         );
         fs.writeFileSync(path.join(regionDir, 'index.html'), monthsHtml);
 
@@ -111,7 +113,9 @@ const REGION_CONFIG = {
                         text: d,
                         href: `${d}.pdf`
                     };
-                })
+                }),
+                false,
+                `../index.html`
             );
             fs.writeFileSync(path.join(monthDir, 'index.html'), daysHtml);
 
@@ -135,7 +139,7 @@ const REGION_CONFIG = {
         'Avalanche Bulletin Archive',
         '', // root
         regionsList,
-        true // isMain
+        true
     );
 
     // We overwrite the root index.html to be the region selector
@@ -150,7 +154,7 @@ function getMonthName(yyyy_mm) {
     return date.toLocaleString('default', { month: 'long', year: 'numeric' });
 }
 
-function generateIndexPage(title, relativeRoot, items, isMain = false) {
+function generateIndexPage(title, relativeRoot, items, isMain = false, backLink = '../index.html') {
     const cssPath = `${relativeRoot}styles.css`;
     return `<!DOCTYPE html>
 <html lang="en">
@@ -172,7 +176,7 @@ function generateIndexPage(title, relativeRoot, items, isMain = false) {
         <div class="archive-list">
             ${items.map(item => `<a href="${item.href}" class="archive-item">${item.text}</a>`).join('')}
         </div>
-        ${!isMain ? `<div style="margin-top:2rem"><a href="../index.html">&larr; Back</a></div>` : ''}
+        ${!isMain ? `<div style="margin-top:2rem"><a href="${backLink}">&larr; Back</a></div>` : ''}
     </div>
 </body>
 </html>`;
