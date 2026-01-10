@@ -1,0 +1,38 @@
+name: Daily Avalanche Fetch
+
+on:
+  schedule:
+    # 15:00 Central European Time (CET) is 14:00 UTC.
+    # Note: CET is UTC+1, CEST is UTC+2.
+    # This runs at 14:00 UTC every day.
+    - cron: "0 14 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch next bulletin
+        run: npm run fetch
+
+      - name: Build site
+        run: npm run build
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Daily bulletin update"
+          branch: main
+          file_pattern: "data/* archive/* index.html"

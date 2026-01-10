@@ -182,9 +182,10 @@ function renderBulletin(dateStr, bulletin, regionConfig, pathToRoot) {
 
             const smallTriangle = renderDangerTriangle(bulletin.dangerRatings, 50, 45, false); // No label, small
 
-            let problemElevLabel = '';
-            if (p.elevation.lowerBound) problemElevLabel = `> ${p.elevation.lowerBound}`;
-            if (p.elevation.upperBound) problemElevLabel = `< ${p.elevation.upperBound}`;
+            const parts = [];
+            if (p.elevation.lowerBound) parts.push(`> ${p.elevation.lowerBound}`);
+            if (p.elevation.upperBound) parts.push(`< ${p.elevation.upperBound}`);
+            let problemElevLabel = parts.join('<br>');
 
             return `
             <div class="problem-card">
