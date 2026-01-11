@@ -5,17 +5,16 @@ const path = require('path');
 const dataDir = path.join(__dirname, '../data');
 
 // Configuration for which regions need PDFs
-// Map RegionID -> Slug because we save to data/pdfs/{slug}/
+// Map RegionID -> Slug
 const REGION_PDF_MAP = {
     'DE-BY-11': 'allgau-prealps',
     'DE-BY-12': 'allgau-alps-central',
-    'DE-BY-13': 'allgau-alps-west',
-    'DE-BY-14': 'allgau-alps-east'
+    'AT-08-01': 'allgau-alps-west', // Kleinwalsertal
+    'AT-07-01': 'allgau-alps-east'  // Außerfern (Tannheimer Tal)
 };
 
 async function downloadPdf(url, destPath) {
     return new Promise((resolve, reject) => {
-        // Ensure directory exists
         fs.mkdirSync(path.dirname(destPath), { recursive: true });
 
         const file = fs.createWriteStream(destPath);
@@ -45,11 +44,11 @@ async function downloadPdf(url, destPath) {
     });
 }
 
-async function processBulletinForPdfs(bulletin, dateStr) {
+// sourceType: 'lawinen-warnung' (Bavaria/Vorarlberg) or 'avalanche-report' (Tyrol/Euregio)
+async function processBulletinForPdfs(bulletin, dateStr, sourceType = 'lawinen-warnung') {
     if (!bulletin.regions) return;
 
     // Check if this bulletin contains any of our target regions
-    // Handle both object format (r.regionID) and string format
     const regions = bulletin.regions.map(r => (typeof r === 'string' ? r : r.regionID));
 
     const matchedSlugs = [];
@@ -62,9 +61,23 @@ async function processBulletinForPdfs(bulletin, dateStr) {
     const uuid = bulletin.id || bulletin.bulletinID;
 
     if (matchedSlugs.length > 0 && uuid) {
-        const url = `https://admin.lawinen-warnung.eu/albina/api/bulletins/${uuid}/pdf?region=DE-BY&lang=en&grayscale=false`;
+        let url;
+        if (sourceType === 'lawinen-warnung') {
+            // Bavaria (DE-BY) and Vorarlberg (AT-08)
+            // Determine region param based on the matched region code
+            // Default to DE-BY, switch to AT-08 if the region ID starts with AT-08
+
+            const isAt08 = regions.some(r => r.startsWith('AT-08'));
+            const regionParam = isAt08 ? 'AT-08' : 'DE-BY';
+
+            url = `https://admin.lawinen-warnung.eu/albina/api/bulletins/${uuid}/pdf?region=${regionParam}&lang=en&grayscale=false`;
+        } else {
+            // Tyrol (AT-07) / Euregio
+            url = `https://api.avalanche.report/albina/api/bulletins/${uuid}/pdf?region=EUREGIO&lang=en&grayscale=false`;
+        }
 
         console.log(`Found relevant bulletin ${uuid} for regions: ${matchedSlugs.join(', ')}`);
+        console.log(`PDF URL: ${url}`);
 
         for (const slug of matchedSlugs) {
             const dest = path.join(dataDir, 'pdfs', slug, `${dateStr}.pdf`);

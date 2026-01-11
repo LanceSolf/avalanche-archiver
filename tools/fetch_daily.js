@@ -21,41 +21,76 @@ if (process.argv[2]) {
 }
 
 const dateStr = formatDate(targetDate);
-const url = `https://static.lawinen-warnung.eu/bulletins/${dateStr}/DE-BY.json`;
-const dest = path.join(dataDir, `DE-BY_${dateStr}.json`);
-
-console.log(`Target Date: ${dateStr}`);
-console.log(`Fetching: ${url}`);
-
-const file = fs.createWriteStream(dest);
-
-https.get(url, (response) => {
-    if (response.statusCode === 200) {
-        response.pipe(file);
-        file.on('finish', () => {
-            file.close(async () => {
-                console.log(`Successfully downloaded to ${dest}`);
-                // Post-process for PDFs
-                try {
-                    const content = JSON.parse(fs.readFileSync(dest, 'utf-8'));
-                    const bulletins = Array.isArray(content) ? content : content.bulletins;
-                    if (bulletins) {
-                        for (const bulletin of bulletins) {
-                            await processBulletinForPdfs(bulletin, dateStr);
-                        }
-                    }
-                } catch (e) {
-                    console.error('Error processing PDFs:', e);
-                }
-            });
-        });
-    } else {
-        console.error(`Failed to fetch JSON. Status Code: ${response.statusCode}`);
-        file.close();
-        fs.unlink(dest, () => { }); // Clean up incomplete file
+// Define sources
+const SOURCES = [
+    {
+        name: 'DE-BY',
+        url: (date) => `https://static.avalanche.report/eaws_bulletins/eaws_bulletins/${date}/${date}-DE-BY.json`,
+        type: 'lawinen-warnung'
+    },
+    {
+        name: 'AT-08',
+        url: (date) => `https://static.avalanche.report/eaws_bulletins/eaws_bulletins/${date}/${date}-AT-08.json`,
+        type: 'lawinen-warnung'
+    },
+    {
+        name: 'AT-07',
+        url: (date) => `https://static.avalanche.report/eaws_bulletins/eaws_bulletins/${date}/${date}-AT-07.json`,
+        type: 'avalanche-report'
     }
-}).on('error', (err) => {
-    console.error(`Network Error: ${err.message}`);
-    fs.unlink(dest, () => { });
-    process.exit(1);
-});
+];
+
+// Helper to fetch and process a single source
+async function fetchAndProcess(source, dateStr) {
+    const url = source.url(dateStr);
+    const dest = path.join(dataDir, `${source.name}_${dateStr}.json`);
+
+    console.log(`\nFetching ${source.name}: ${url}`);
+
+    return new Promise((resolve) => {
+        const file = fs.createWriteStream(dest);
+        const req = https.get(url, (response) => {
+            if (response.statusCode === 200) {
+                response.pipe(file);
+                file.on('finish', () => {
+                    file.close(async () => {
+                        console.log(`  Saved to ${dest}`);
+                        try {
+                            const content = JSON.parse(fs.readFileSync(dest, 'utf-8'));
+                            const bulletins = Array.isArray(content) ? content : content.bulletins;
+                            if (bulletins) {
+                                for (const bulletin of bulletins) {
+                                    await processBulletinForPdfs(bulletin, dateStr, source.type);
+                                }
+                            }
+                            resolve(true);
+                        } catch (e) {
+                            console.error(`  Error processing ${source.name} PDFs:`, e.message);
+                            resolve(false);
+                        }
+                    });
+                });
+            } else {
+                console.error(`  Failed to fetch ${source.name}. Status: ${response.statusCode}`);
+                file.close();
+                fs.unlink(dest, () => { });
+                resolve(false);
+            }
+        });
+
+        req.on('error', (err) => {
+            console.error(`  Network Error for ${source.name}: ${err.message}`);
+            fs.unlink(dest, () => { });
+            resolve(false);
+        });
+    });
+}
+
+(async () => {
+    const dateStr = formatDate(targetDate);
+    console.log(`Target Date: ${dateStr}`);
+
+    for (const source of SOURCES) {
+        await fetchAndProcess(source, dateStr);
+    }
+})();
