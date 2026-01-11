@@ -4,7 +4,7 @@
   "description": "Daily avalanche bulletin archiver",
   "scripts": {
     "build": "node tools/build.js",
-    "fetch": "node tools/fetch_daily.js"
+    "fetch": "node tools/fetch_daily.js && node tools/fetch_weather.js"
   },
   "dependencies": {},
   "devDependencies": {}

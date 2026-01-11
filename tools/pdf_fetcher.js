@@ -80,17 +80,87 @@ async function processBulletinForPdfs(bulletin, dateStr, sourceType = 'lawinen-w
         console.log(`PDF URL: ${url}`);
 
         for (const slug of matchedSlugs) {
-            const dest = path.join(dataDir, 'pdfs', slug, `${dateStr}.pdf`);
-            if (fs.existsSync(dest)) {
-                console.log(`  Skipping (exists): ${slug}/${dateStr}.pdf`);
+            // Base filename: YYYY-MM-DD.pdf
+            const baseDest = path.join(dataDir, 'pdfs', slug, `${dateStr}.pdf`);
+
+            // If file doesn't exist, simple download
+            if (!fs.existsSync(baseDest)) {
+                try {
+                    console.log(`  Downloading to: ${slug}/${dateStr}.pdf`);
+                    await downloadPdf(url, baseDest);
+                } catch (e) {
+                    console.error(`  Failed to download PDF: ${e.message}`);
+                }
                 continue;
             }
 
+            // File exists - check for update
+            // Download to temp file to compare
+            const tempDest = baseDest + '.tmp';
             try {
-                console.log(`  Downloading to: ${slug}/${dateStr}.pdf`);
-                await downloadPdf(url, dest);
+                // console.log(`  Checking for updates for: ${slug}/${dateStr}.pdf`);
+                await downloadPdf(url, tempDest);
+
+                // Compare file sizes (simple check)
+                const statExisting = fs.statSync(baseDest);
+                const statNew = fs.statSync(tempDest);
+
+                // If sizes differ significantly or usually just binary comparison, assume update.
+                // For PDFs, even a tiny change implies a rebuild.
+                // Let's use exact size match as a proxy for identity, or simple buffer compare if needed.
+                // But size + buffer compare is best.
+                let isDifferent = (statExisting.size !== statNew.size);
+
+                if (!isDifferent) {
+                    // Deep compare if sizes match
+                    const buf1 = fs.readFileSync(baseDest);
+                    const buf2 = fs.readFileSync(tempDest);
+                    if (!buf1.equals(buf2)) {
+                        isDifferent = true;
+                    }
+                }
+
+                if (isDifferent) {
+                    console.log(`  Update detected for ${slug}/${dateStr}.pdf!`);
+
+                    // Find next version suffix
+                    let version = 2;
+                    let versionDest = path.join(dataDir, 'pdfs', slug, `${dateStr}_v${version}.pdf`);
+                    while (fs.existsSync(versionDest)) {
+                        // Check if this version is identical to new one? 
+                        // If we run script 5 times, we don't want v2, v3, v4 all identical.
+                        // Compare new temp with LAST version?
+                        const bufLast = fs.readFileSync(versionDest);
+                        const bufNew = fs.readFileSync(tempDest);
+                        if (bufLast.equals(bufNew)) {
+                            // Identical to an existing version, so ignore
+                            console.log(`  Update matches existing ${dateStr}_v${version}.pdf. Skipping.`);
+                            isDifferent = false;
+                            break;
+                        }
+
+                        version++;
+                        versionDest = path.join(dataDir, 'pdfs', slug, `${dateStr}_v${version}.pdf`);
+                    }
+
+                    if (isDifferent) {
+                        fs.renameSync(tempDest, versionDest);
+                        console.log(`  Archived update as: ${slug}/${dateStr}_v${version}.pdf`);
+                    } else {
+                        // Was duplicate of a version
+                        fs.unlinkSync(tempDest);
+                    }
+                } else {
+                    // console.log(`  No change for ${slug}/${dateStr}.pdf`);
+                    fs.unlinkSync(tempDest);
+                }
+
             } catch (e) {
-                console.error(`  Failed to download PDF: ${e.message}`);
+                console.error(`  Failed to check update: ${e.message}`);
+                // Cleanup temp if exists
+                if (fs.existsSync(tempDest)) {
+                    fs.unlinkSync(tempDest);
+                }
             }
         }
     }

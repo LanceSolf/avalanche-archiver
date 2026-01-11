@@ -5,7 +5,11 @@ on:
     # 15:00 Central European Time (CET) is 14:00 UTC.
     # Note: CET is UTC+1, CEST is UTC+2.
     # This runs at 14:00 UTC every day.
-    - cron: "0 14 * * *"
+    # Run 3 times daily:
+    # 06:00 CET (05:00 UTC) - Morning usage
+    # 12:00 CET (11:00 UTC) - Mid-day check
+    # 18:00 CET (17:00 UTC) - Evening check & bulletins
+    - cron: "0 5,11,17 * * *"
   workflow_dispatch:
 
 permissions:
@@ -33,6 +37,6 @@ jobs:
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Daily bulletin update"
+          commit_message: "Routine data update"
           branch: master
           file_pattern: "data/* archive/* index.html"

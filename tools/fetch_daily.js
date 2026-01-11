@@ -94,10 +94,27 @@ async function fetchAndProcess(source, dateStr) {
 }
 
 (async () => {
-    const dateStr = formatDate(targetDate);
-    console.log(`Target Date: ${dateStr}`);
+    const dates = [targetDate];
 
-    for (const source of SOURCES) {
-        await fetchAndProcess(source, dateStr);
+    // If running automatically (no CLI arg) and it is evening (UTC Hour >= 15)
+    // 15:00 UTC = 16:00 CET / 17:00 CEST.
+    // Avalanche bulletins usually publish around 17:00 local time.
+    // So picking fetching Next Day's bulletin in the evening makes sense.
+    if (!process.argv[2]) {
+        const utcHour = new Date().getUTCHours();
+        if (utcHour >= 15) {
+            const tomorrow = new Date(targetDate);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dates.push(tomorrow);
+            console.log(`Evening run detected (UTC ${utcHour}:00). Including tomorrow's bulletin.`);
+        }
+    }
+
+    for (const date of dates) {
+        const dStr = formatDate(date);
+        console.log(`\n=== Processing Date: ${dStr} ===`);
+        for (const source of SOURCES) {
+            await fetchAndProcess(source, dStr);
+        }
     }
 })();
