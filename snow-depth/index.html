@@ -228,553 +228,381 @@
                 right: 1rem;
             }
         }
+    </style>
+</head>
 
-        </head><body><div class="container"><header><div class="header-content"><a href="../index.html" class="logo">Avalanche Archive</a><div class="date-nav"><span>Weather Stations</span></div></div></header><h1>Bavarian Alps Weather Stations</h1><p>Current snow depth and weather conditions. Data sourced from Lawinenwarndienst Bayern.</p><div id="station-container" class="station-grid"><div class="loading">Loading station data...</div></div></div>< !-- Modal Container --><div id="chart-modal" class="modal-overlay"><div class="modal-content"><button class="modal-close" onclick="closeModal()">&times;
-        </button><h2 id="modal-title" style="margin-top: 0; color: var(--primary-blue);"></h2><div style="flex-grow: 1; position: relative;"><canvas id="modal-chart"></canvas></div></div></div><script>let allStations=[];
-        let modalChartInstance=null;
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <a href="../index.html" class="logo">Avalanche Archive</a>
+                <div class="date-nav"><span>Weather Stations</span></div>
+            </div>
+        </header>
+        <h1>Bavarian Alps Weather Stations</h1>
+        <p>Current snow depth and weather conditions. Data sourced from Lawinenwarndienst Bayern.</p>
+        <div id="station-container" class="station-grid">
+            <div class="loading">Loading station data...</div>
+        </div>
+    </div>
+    <!-- Modal Container -->
+    <div id="chart-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 id="modal-title" style="margin-top: 0; color: var(--primary-blue);"></h2>
+            <div style="flex-grow: 1; position: relative;">
+                <canvas id="modal-chart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script>
+        let allStations = [];
+        let modalChartInstance = null;
 
         async function loadData() {
             try {
-                const response=await fetch('../data/weather_stations.json');
-                const data=await response.json();
-                allStations=data;
+                const response = await fetch('../data/weather_stations.json');
+                const data = await response.json();
+                allStations = data;
                 renderStations(data);
             }
 
             catch (error) {
                 console.error('Error loading data:', error);
-                document.getElementById('station-container').innerHTML='<div class="error">Failed to load weather data. Please try again later.</div>';
+                document.getElementById('station-container').innerHTML = '<div class="error">Failed to load weather data. Please try again later.</div>';
             }
         }
 
         function renderStations(stations) {
-            const container=document.getElementById('station-container');
-            container.innerHTML=''; // Clear loading
+            const container = document.getElementById('station-container');
+            container.innerHTML = ''; // Clear loading
 
-            stations.forEach((station, index)=> {
-                    const latest=station.data[station.data.length - 1] || {}
+            stations.forEach((station, index) => {
+                const latest = station.data[station.data.length - 1] || {};
+                const date = new Date(latest.TS);
+                const chartId = `chart-${index}`;
 
-                    ;
-                    const date=new Date(latest.TS);
+                const card = document.createElement('div');
+                card.className = 'station-card';
 
-                    const chartId=`chart-$ {
-                        index
-                    }
+                card.innerHTML = `
+                    <button class="expand-btn" onclick="openModal(${index})" title="Expand Chart">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                        </svg>
+                    </button>
+                    <div class="station-header">
+                        <h2 class="station-name">${station.name}</h2>
+                        <span class="latest-update">${formatDate(date)}</span>
+                    </div>
+                    <div class="data-grid">
+                        <div class="data-item">
+                            <span class="data-label">Snow Depth</span>
+                            <span class="data-value">${latest.HS !== undefined ? latest.HS : '-'} <span class="unit">cm</span></span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-label">Air Temp</span>
+                            <span class="data-value">${latest.TL !== undefined ? latest.TL : '-'} <span class="unit">°C</span></span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-label">Wind</span>
+                            <span class="data-value">${latest.ff !== undefined ? latest.ff : '-'} <span class="unit">km/h</span></span>
+                        </div>
+                        <div class="data-item">
+                            <span class="data-label">Dir</span>
+                            <span class="data-value">${formatWindDir(latest.dd)}</span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="${chartId}"></canvas>
+                    </div>
+                    <a href="${station.originalUrl}" target="_blank" class="source-link">View Source &rarr;</a>
+                `;
+                container.appendChild(card);
 
-                    `;
-
-                    const card=document.createElement('div');
-                    card.className='station-card';
-
-                    card.innerHTML=` <button class="expand-btn" onclick="openModal(${index})" title="Expand Chart" > <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" > <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" /> </svg> </button> <div class="station-header" > <h2 class="station-name" >$ {
-                        station.name
-                    }
-
-                    </h2> <span class="latest-update" >$ {
-                        formatDate(date)
-                    }
-
-                    </span> </div> <div class="data-grid" > <div class="data-item" > <span class="data-label" >Snow Depth</span> <span class="data-value" >$ {
-                        latest.HS !==undefined ? latest.HS : '-'
-                    }
-
-                    <span class="unit" >cm</span></span> </div> <div class="data-item" > <span class="data-label" >Air Temp</span> <span class="data-value" >$ {
-                        latest.TL !==undefined ? latest.TL : '-'
-                    }
-
-                    <span class="unit" >°C</span></span> </div> <div class="data-item" > <span class="data-label" >Wind</span> <span class="data-value" >$ {
-                        latest.ff !==undefined ? latest.ff : '-'
-                    }
-
-                    <span class="unit" >km/h</span></span> </div> <div class="data-item" > <span class="data-label" >Dir</span> <span class="data-value" >$ {
-                        formatWindDir(latest.dd)
-                    }
-
-                    </span> </div> </div> <div class="chart-container" > <canvas id="${chartId}" ></canvas> </div> <a href="${station.originalUrl}" target="_blank" class="source-link" >View Source &rarr; </a> `;
-                    container.appendChild(card);
-
-                    renderChart(chartId, station.data, 6); // Hourly for small charts
-                });
+                renderChart(chartId, station.data, 6); // Hourly for small charts
+            });
         }
 
         function openModal(index) {
-            const station=allStations[index];
-            if ( !station) return;
+            const station = allStations[index];
+            if (!station) return;
 
             // Get standard chart visibility state to preserve it
-            const smallChartId=`chart-$ {
+            const smallChartId = `chart-$ {
                 index
             }
 
             `;
-            const smallChart=Chart.getChart(smallChartId);
-            let visibilityState=null;
+            const smallChart = Chart.getChart(smallChartId);
+            let visibilityState = null;
 
             if (smallChart) {
-                visibilityState=smallChart.data.datasets.map((ds, i)=> {
-                        return smallChart.isDatasetVisible(i);
-                    });
+                visibilityState = smallChart.data.datasets.map((ds, i) => {
+                    return smallChart.isDatasetVisible(i);
+                });
             }
 
-            document.getElementById('modal-title').innerText=station.name;
-            document.getElementById('chart-modal').style.display='flex';
+            document.getElementById('modal-title').innerText = station.name;
+            document.getElementById('chart-modal').style.display = 'flex';
 
             // Render full detail chart (step = 1) with preserved visibility
             renderChart('modal-chart', station.data, 1, visibilityState);
         }
 
         function closeModal() {
-            document.getElementById('chart-modal').style.display='none';
+            document.getElementById('chart-modal').style.display = 'none';
 
             if (modalChartInstance) {
                 modalChartInstance.destroy();
-                modalChartInstance=null;
+                modalChartInstance = null;
             }
         }
 
         // Close on outside click
-        window.onclick=function (event) {
-            const modal=document.getElementById('chart-modal');
+        window.onclick = function (event) {
+            const modal = document.getElementById('chart-modal');
 
-            if (event.target===modal) {
+            if (event.target === modal) {
                 closeModal();
             }
         }
 
-        function renderChart(canvasId, rawData, step=6, visibilityState=null) {
-            const ctx=document.getElementById(canvasId).getContext('2d');
+        function renderChart(canvasId, rawData, step = 6, visibilityState = null) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
 
             // Filter data based on step
-            const data=rawData.filter((_, i)=> i % step===0);
+            const data = rawData.filter((_, i) => i % step === 0);
 
-            let lastDate=null;
+            let lastDate = null;
 
-            const labels=data.map(d=> {
-                    const date=new Date(d.TS);
+            const labels = data.map(d => {
+                const date = new Date(d.TS);
+                const dateStr = date.toLocaleDateString('en-GB', {
+                    weekday: 'short', day: 'numeric'
+                });
 
-                    const dateStr=date.toLocaleDateString('en-GB', {
-                        weekday: 'short', day: 'numeric'
-                    });
-
-                if (lastDate !==dateStr) {
-                    lastDate=dateStr;
+                if (lastDate !== dateStr) {
+                    lastDate = dateStr;
                     return dateStr;
                 }
-
                 return '';
             });
 
-        // Timestamps for tooltips
-        const fullDates=data.map(d=> new Date(d.TS));
+            // Timestamps for tooltips
+            const fullDates = data.map(d => new Date(d.TS));
 
-        const windArrowsPlugin= {
+            const windArrowsPlugin = {
+                id: 'windArrows',
+                afterDatasetsDraw(chart, args, options) {
+                    const { ctx, chartArea: { top, bottom, left, right, width, height }, scales: { x } } = chart;
 
-            id: 'windArrows',
-            afterDatasetsDraw(chart, args, options) {
-                const {
-
-                    ctx,
-                    chartArea: {
-                        top,
-                        bottom,
-                        left,
-                        right,
-                        width,
-                        height
-                    }
-
-                    ,
-                    scales: {
-                        x
-                    }
-                }
-
-                =chart;
-
-                // Check if Wind Direction dataset is visible
-                const windDatasetIndex=chart.data.datasets.findIndex(ds=> ds.label==='Wind Direction');
-                if (windDatasetIndex===-1 || !chart.isDatasetVisible(windDatasetIndex)) return;
-
-                ctx.save();
-                ctx.textAlign='center';
-                ctx.textBaseline='middle';
-
-                // Determine block size (aiming for ~6 hours)
-                // If step is 6 (hourly), we want 6 points. If step is 1 (10 mins), we want 36 points.
-                const pointsPerHour=6 / step;
-                const blockSize=Math.round(6 * pointsPerHour); // 6 hours worth of points
-
-                for (let i=0; i < data.length; i +=blockSize) {
-                    // Gather wind directions for this block
-                    const chunk=data.slice(i, i + blockSize);
-                    if (chunk.length===0) continue;
-
-                    const dirs=chunk.map(d=> d.dd).filter(d=> d !==undefined && d !==null);
-                    if (dirs.length===0) continue;
-
-                    // Calculate Vector Average
-                    const avgDir=getVectorAverage(dirs);
-                    if (avgDir===null) continue;
-
-                    // Position: Center of the block
-                    const centerIndex=i+Math.floor(chunk.length / 2);
-                    const xPos=x.getPixelForValue(centerIndex);
-
-                    if (xPos < left || xPos > right) continue;
-                    const yPos=top+15;
+                    // Check if Wind Direction dataset is visible
+                    const windDatasetIndex = chart.data.datasets.findIndex(ds => ds.label === 'Wind Direction');
+                    if (windDatasetIndex === -1 || !chart.isDatasetVisible(windDatasetIndex)) return;
 
                     ctx.save();
-                    ctx.translate(xPos, yPos);
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
 
-                    // Rotate context
-                    // Adjusted logic per request: Right is for West, Left is for East.
-                    // Standard Wind Dir: 90 is East. We want it to point Left (180 visually).
-                    // 270 is West. We want it to point Right (0 visually).
-                    // Formula: (avgDir + 90) * (Math.PI / 180).
-                    // Test 90: 180 deg (Left). OK.
-                    // Test 270: 360 deg (Right). OK.
-                    const angle=(avgDir + 90) * (Math.PI / 180);
-                    ctx.rotate(angle);
+                    const pointsPerHour = 6 / step;
+                    const blockSize = Math.round(6 * pointsPerHour);
 
-                    // Draw Arrow
-                    ctx.beginPath();
-                    ctx.moveTo(-6, -4);
-                    ctx.lineTo(6, 0);
-                    ctx.lineTo(-6, 4);
-                    ctx.lineTo(-3, 0);
-                    ctx.closePath();
+                    for (let i = 0; i < data.length; i += blockSize) {
+                        const chunk = data.slice(i, i + blockSize);
+                        if (chunk.length === 0) continue;
+                        const dirs = chunk.map(d => d.dd).filter(d => d !== undefined && d !== null);
+                        if (dirs.length === 0) continue;
+                        const avgDir = getVectorAverage(dirs);
+                        if (avgDir === null) continue;
 
-                    ctx.fillStyle='rgba(0, 0, 0, 0.7)';
-                    ctx.fill();
+                        const centerIndex = i + Math.floor(chunk.length / 2);
+                        const xPos = x.getPixelForValue(centerIndex);
+                        if (xPos < left || xPos > right) continue;
+                        const yPos = top + 15;
 
+                        ctx.save();
+                        ctx.translate(xPos, yPos);
+                        const angle = (avgDir + 90) * (Math.PI / 180);
+                        ctx.rotate(angle);
+
+                        ctx.beginPath();
+                        ctx.moveTo(-6, -4);
+                        ctx.lineTo(6, 0);
+                        ctx.lineTo(-6, 4);
+                        ctx.lineTo(-3, 0);
+                        ctx.closePath();
+                        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                        ctx.fill();
+                        ctx.restore();
+                    }
                     ctx.restore();
                 }
+            };
 
-                ctx.restore();
-            }
-        }
-
-        ;
-
-        // Helper for vector averaging of degrees
-        function getVectorAverage(degrees) {
-            let sinSum=0;
-            let cosSum=0;
-
-            for (let deg of degrees) {
-                const rad=deg * Math.PI / 180;
-                sinSum+=Math.sin(rad);
-                cosSum+=Math.cos(rad);
-            }
-
-            const count=degrees.length;
-            if (count===0) return null;
-
-            let avgRad=Math.atan2(sinSum / count, cosSum / count);
-            let avgDeg=avgRad * 180 / Math.PI;
-            if (avgDeg < 0) avgDeg+=360;
-            return avgDeg;
-        }
-
-        // Visibility Helper
-        const isVisible=(index, defaultState)=> {
-            if (visibilityState && visibilityState[index] !==undefined) {
-                return !visibilityState[index]; // hidden = !visible
-            }
-
-            return defaultState; // Return default 'hidden' value
-        }
-
-        ;
-
-        const chartConfig= {
-
-            type: 'line',
-            data: {
-
-                labels: labels,
-                datasets: [ {
-                    // Index 0
-                    label: 'Snow Depth (cm)',
-                        data: data.map(d=> d.HS),
-                        borderColor: '#004481',
-                        backgroundColor: 'rgba(0, 68, 129, 0.1)',
-                        borderWidth: 2,
-                        yAxisID: 'y',
-                        pointRadius: step===1 ? 0: 0,
-                        pointHoverRadius: 4,
-                        fill: true,
-                        tension: 0.2,
-                        hidden: isVisible(0, false)
+            function getVectorAverage(degrees) {
+                let sinSum = 0;
+                let cosSum = 0;
+                for (let deg of degrees) {
+                    const rad = deg * Math.PI / 180;
+                    sinSum += Math.sin(rad);
+                    cosSum += Math.cos(rad);
                 }
-
-                ,
-                {
-                // Index 1 (Was 2)
-                label: 'Air Temp (°C)',
-                    data: data.map(d=> d.TL),
-                    borderColor: '#FF0000',
-                    borderWidth: 1.5,
-                    yAxisID: 'y1',
-                    pointRadius: 0,
-                    pointHoverRadius: 4,
-                    borderDash: [5, 5],
-                    tension: 0.4,
-                    hidden: isVisible(1, true)
+                const count = degrees.length;
+                if (count === 0) return null;
+                let avgRad = Math.atan2(sinSum / count, cosSum / count);
+                let avgDeg = avgRad * 180 / Math.PI;
+                if (avgDeg < 0) avgDeg += 360;
+                return avgDeg;
             }
 
-            ,
-            {
-            // Index 2 (Was 3)
-            label: 'Surface Temp (°C)',
-                data: data.map(d=> d.TO),
-                borderColor: '#FF9900',
-                borderWidth: 1,
-                yAxisID: 'y1',
-                pointRadius: 0,
-                pointHoverRadius: 4,
-                hidden: isVisible(2, true),
-                tension: 0.4
-        }
-
-        ,
-        {
-        // Index 3 (Was 4)
-        label: 'Wind Speed (km/h)',
-            data: data.map(d=> d.ff),
-            borderColor: '#4BC0C0',
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderWidth: 1.5,
-            yAxisID: 'y2',
-            pointRadius: 0,
-            pointHoverRadius: 4,
-            hidden: isVisible(3, true),
-            tension: 0.1,
-            fill: false
-        }
-
-        ,
-        {
-        // Index 4 (Was 5)
-        label: 'Wind Gusts (km/h)',
-            data: data.map(d=> d.ffBoe),
-            borderColor: '#9966FF',
-            borderWidth: 1.5,
-            yAxisID: 'y2',
-            pointRadius: 0,
-            pointHoverRadius: 4,
-            hidden: isVisible(4, true),
-            tension: 0.1,
-            borderDash: [2, 2]
-        }
-
-        ,
-        {
-        // Index 5 (Was 6)
-        label: 'Wind Direction',
-            data: [], // No actual data points, handled by plugin
-            borderColor: 'rgba(0, 0, 0, 0.7)',
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            pointStyle: 'triangle', // Icon for legend
-            rotation: 90,
-            borderWidth: 0,
-            hidden: isVisible(5, true),
-            yAxisID: 'y3' // Use a hidden axis so it doesn't trigger the speed axis
-        }
-
-        ]
-        }
-
-        ,
-        plugins: [windArrowsPlugin],
-        options: {
-
-            responsive: true,
-            maintainAspectRatio: false,
-            layout: {
-                padding: {
-                    top: 20 // Make room for arrows
+            const isVisible = (index, defaultState) => {
+                if (visibilityState && visibilityState[index] !== undefined) {
+                    return !visibilityState[index];
                 }
-            }
+                return defaultState;
+            };
 
-            ,
-            interaction: {
-                mode: 'index',
-                    intersect: false,
-            }
-
-            ,
-            plugins: {
-                legend: {
-                    labels: {
-
-                        boxWidth: 12,
-                        usePointStyle: true,
-                        filter: function (item, chart) {
-                            // Custom logic if needed, but default is fine
-                            return true;
+            const chartConfig = {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Snow Depth (cm)',
+                            data: data.map(d => d.HS),
+                            borderColor: '#004481',
+                            backgroundColor: 'rgba(0, 68, 129, 0.1)',
+                            borderWidth: 2,
+                            yAxisID: 'y',
+                            pointRadius: step === 1 ? 0 : 0,
+                            pointHoverRadius: 4,
+                            fill: true,
+                            tension: 0.2,
+                            hidden: isVisible(0, false)
+                        },
+                        {
+                            label: 'Air Temp (°C)',
+                            data: data.map(d => d.TL),
+                            borderColor: '#FF0000',
+                            borderWidth: 1.5,
+                            yAxisID: 'y1',
+                            pointRadius: 0,
+                            pointHoverRadius: 4,
+                            borderDash: [5, 5],
+                            tension: 0.4,
+                            hidden: isVisible(1, true)
+                        },
+                        {
+                            label: 'Surface Temp (°C)',
+                            data: data.map(d => d.TO),
+                            borderColor: '#FF9900',
+                            borderWidth: 1,
+                            yAxisID: 'y1',
+                            pointRadius: 0,
+                            pointHoverRadius: 4,
+                            hidden: isVisible(2, true),
+                            tension: 0.4
+                        },
+                        {
+                            label: 'Wind Speed (km/h)',
+                            data: data.map(d => d.ff),
+                            borderColor: '#4BC0C0',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderWidth: 1.5,
+                            yAxisID: 'y2',
+                            pointRadius: 0,
+                            pointHoverRadius: 4,
+                            hidden: isVisible(3, true),
+                            tension: 0.1,
+                            fill: false
+                        },
+                        {
+                            label: 'Wind Gusts (km/h)',
+                            data: data.map(d => d.ffBoe),
+                            borderColor: '#9966FF',
+                            borderWidth: 1.5,
+                            yAxisID: 'y2',
+                            pointRadius: 0,
+                            pointHoverRadius: 4,
+                            hidden: isVisible(4, true),
+                            tension: 0.1,
+                            borderDash: [2, 2]
+                        },
+                        {
+                            label: 'Wind Direction',
+                            data: [],
+                            borderColor: 'rgba(0, 0, 0, 0.7)',
+                            backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                            pointStyle: 'triangle',
+                            rotation: 90,
+                            borderWidth: 0,
+                            hidden: isVisible(5, true),
+                            yAxisID: 'y3'
                         }
-                    }
-                }
-
-                ,
-                tooltip: {
-                    callbacks: {
-                        title: (context)=> {
-                            const index=context[0].dataIndex;
-
-                            return fullDates[index].toLocaleString('en-GB', {
-                                weekday: 'short',
-                                day: '2-digit',
-                                hour: '2-digit',
-                                minute: '2-digit'
-                            });
-                    }
-
-                    ,
-                    afterBody: (context)=> {
-                        const index=context[0].dataIndex;
-                        const points=[];
-
-                        const dir=data[index].dd;
-
-                        if (dir !==undefined && dir !==null) {
-                            points.push(`Wind Dir: $ {
-                                    formatWindDir(dir)
-                                }
-
-                                ($ {
-                                        dir
+                    ]
+                },
+                plugins: [windArrowsPlugin],
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: { padding: { top: 20 } },
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { labels: { boxWidth: 12, usePointStyle: true } },
+                        tooltip: {
+                            callbacks: {
+                                title: (context) => {
+                                    const index = context[0].dataIndex;
+                                    return fullDates[index].toLocaleString('en-GB', {
+                                        weekday: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit'
+                                    });
+                                },
+                                afterBody: (context) => {
+                                    const index = context[0].dataIndex;
+                                    const points = [];
+                                    const dir = data[index].dd;
+                                    if (dir !== undefined && dir !== null) {
+                                        points.push(`Wind Dir: ${formatWindDir(dir)} (${dir}°)`);
                                     }
-
-                                    °)`);
-                        }
-
-                        // Calculate 24h Snow Diff dynamically
-                        const currentHS=data[index].HS;
-
-                        if (currentHS !==undefined && currentHS !==null) {
-                            const currentTs=fullDates[index].getTime();
-                            const targetTs=currentTs - (24 * 60 * 60 * 1000); // 24 hours ago
-
-                            // Find historical point
-                            for (let j=index - 1; j >=0; j--) {
-                                const prevTs=new Date(data[j].TS).getTime();
-
-                                if (prevTs <=targetTs) {
-
-                                    // Allow for a small tolerance (e.g., 30 minutes)
-                                    if (targetTs - prevTs < 30 * 60 * 1000) {
-                                        const prevHS=data[j].HS;
-
-                                        if (prevHS !==undefined && prevHS !==null) {
-                                            const delta=currentHS - prevHS;
-                                            const sign=delta>0 ? '+': '';
-
-                                            points.push(`24h Snow Diff: $ {
-                                                    sign
+                                    const currentHS = data[index].HS;
+                                    if (currentHS !== undefined && currentHS !== null) {
+                                        const currentTs = fullDates[index].getTime();
+                                        const targetTs = currentTs - (24 * 60 * 60 * 1000);
+                                        for (let j = index - 1; j >= 0; j--) {
+                                            const prevTs = new Date(data[j].TS).getTime();
+                                            if (prevTs <= targetTs) {
+                                                if (targetTs - prevTs < 30 * 60 * 1000) {
+                                                    const prevHS = data[j].HS;
+                                                    if (prevHS !== undefined && prevHS !== null) {
+                                                        const delta = currentHS - prevHS;
+                                                        const sign = delta > 0 ? '+' : '';
+                                                        points.push(`24h Snow Diff: ${sign}${delta.toFixed(1)} cm`);
+                                                    }
                                                 }
-
-                                                $ {
-                                                    delta.toFixed(1)
-                                                }
-
-                                                cm`);
+                                                break;
+                                            }
                                         }
                                     }
-
-                                    break; // Found the relevant historical period, stop searching
+                                    return points;
                                 }
                             }
                         }
-
-                        return points;
+                    },
+                    scales: {
+                        x: { ticks: { maxRotation: 0, autoSkip: false }, grid: { display: false } },
+                        y: { type: 'linear', display: 'auto', position: 'left', title: { display: true, text: 'Snow (cm)' }, grid: { color: '#f0f0f0' } },
+                        y1: { type: 'linear', display: 'auto', position: 'right', title: { display: true, text: 'Temp (°C)' }, grid: { display: false } },
+                        y2: { type: 'linear', display: 'auto', position: 'right', title: { display: true, text: 'Wind (km/h)' }, grid: { display: false } },
+                        y3: { type: 'linear', display: false }
                     }
                 }
+            };
+
+            const chart = new Chart(ctx, chartConfig);
+            if (canvasId === 'modal-chart') {
+                modalChartInstance = chart;
             }
-        }
-
-        ,
-        scales: {
-            x: {
-                ticks: {
-                    maxRotation: 0,
-                        autoSkip: false
-                }
-
-                ,
-                grid: {
-                    display: false
-                }
-            }
-
-            ,
-            y: {
-
-                type: 'linear',
-                display: 'auto',
-                // Auto hide if snow depth hidden (unlikely but consistent)
-                position: 'left',
-                title: {
-                    display: true, text: 'Snow (cm)'
-                }
-
-                ,
-                grid: {
-                    color: '#f0f0f0'
-                }
-            }
-
-            ,
-            y1: {
-
-                type: 'linear',
-                display: 'auto',
-                // Auto hide if no temps visible
-                position: 'right',
-                title: {
-                    display: true, text: 'Temp (°C)'
-                }
-
-                ,
-                grid: {
-                    display: false
-                }
-            }
-
-            ,
-            y2: {
-
-                type: 'linear',
-                display: 'auto',
-                position: 'right',
-                title: {
-                    display: true, text: 'Wind (km/h)'
-                }
-
-                ,
-                grid: {
-                    display: false
-                }
-            }
-
-            ,
-            y3: {
-                type: 'linear',
-                    display: false // Always hidden
-            }
-        }
-        }
-        }
-
-        ;
-
-        const chart=new Chart(ctx, chartConfig);
-
-        // If rendering the modal chart, save instance
-        if (canvasId==='modal-chart') {
-            modalChartInstance=chart;
-        }
         }
 
         function formatDate(date) {
@@ -787,18 +615,21 @@
         }
 
         function formatWindDir(degrees) {
-            if (degrees===undefined || degrees===null) return '-';
-            const dirs=['N',
-            'NE',
-            'E',
-            'SE',
-            'S',
-            'SW',
-            'W',
-            'NW'];
-            const i=Math.round(degrees / 45) % 8;
+            if (degrees === undefined || degrees === null) return '-';
+            const dirs = ['N',
+                'NE',
+                'E',
+                'SE',
+                'S',
+                'SW',
+                'W',
+                'NW'];
+            const i = Math.round(degrees / 45) % 8;
             return dirs[i];
         }
 
         document.addEventListener('DOMContentLoaded', loadData);
-        </script></body></html>
+    </script>
+</body>
+
+</html>

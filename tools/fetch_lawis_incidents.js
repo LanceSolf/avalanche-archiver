@@ -183,80 +183,81 @@ function fetchJson(url) {
                     needsUpdate = true; // Available German comments but no translation -> Retry translation
                 }
 
-                if (!needsUpdate) {
-                    // Reuse existing data
-                    detailedIncidents.push(existing);
-                    continue;
-                }
-
-                newOrUpdatedCount++;
-                // Throttle slightly only if we are actually fetching
-                await new Promise(r => setTimeout(r, 200));
-
-                const detailUrl = `https://lawis.at/lawis_api/public/incident/${simpleInc.id}`;
-                console.log(`Fetching details for ${simpleInc.id}...`);
-                const details = await fetchJson(detailUrl);
-
-                // Merge details
+                let finalInc = simpleInc;
+                let details = null;
                 let parsedImages = [];
-                // 1. Try images from API response first
-                if (details.images && Array.isArray(details.images)) {
-                    parsedImages = details.images
-                        .filter(img => img && img.url)
-                        .map(img => ({
-                            url: `https://lawis.at/lawis_api/v2_3/${img.url}`,
-                            caption: img.caption,
-                            comment: img.comment
-                        }));
-                }
-
-                // 2. If no images found, try probing
-                if (parsedImages.length === 0) {
-                    console.log(`  Probing images for ${simpleInc.id}...`);
-                    parsedImages = await probeImages(simpleInc.id);
-                } else {
-                    // console.log(`  Found ${parsedImages.length} images from API for ${simpleInc.id}.`);
-                }
-
-                // DOWNLOAD IMAGES
-                for (const img of parsedImages) {
-                    try {
-                        const localRelPath = await downloadImage(img.url, simpleInc.id);
-                        if (localRelPath) {
-                            img.local_path = localRelPath.replace(/\\/g, '/'); // Normalize for JSON
-                        }
-                    } catch (e) {
-                        console.error(`Failed to download image ${img.url}`, e);
-                    }
-                }
-
-                // 3. Translate Comments
-                // Only if we don't have it (though we entered here because we might not)
-                // If we had existing data but just missed translation, details might differ? 
-                // We fetched fresh details, so we use them.
-
                 let commentsEn = null;
-                // If we had an existing translation and text didn't change, we could keep it?
-                // But simplified: just try to translate if text exists.
-                // NOTE: If this is a "retry" for translation, we want to try.
 
-                if (details.comments) {
-                    // Check if we already had it translated in "existing" to avoid re-charge if we re-fetched for other reasons?
-                    // But our logic says we only enter if !comments_en. So we are safe.
-                    console.log(`  Translating text for ${simpleInc.id}...`);
-                    commentsEn = await translateText(details.comments);
-                    if (commentsEn) console.log(`  -> Success!`);
-                    else console.log(`  -> Failed.`);
+                if (!needsUpdate) {
+                    finalInc = existing;
+                } else {
+                    newOrUpdatedCount++;
+                    // Throttle slightly only if we are actually fetching
+                    await new Promise(r => setTimeout(r, 200));
+
+                    const detailUrl = `https://lawis.at/lawis_api/public/incident/${simpleInc.id}`;
+                    console.log(`Fetching details for ${simpleInc.id}...`);
+                    try {
+                        details = await fetchJson(detailUrl);
+                    } catch (e) {
+                        console.error(`Failed to fetch details for ${simpleInc.id}`, e);
+                        detailedIncidents.push(simpleInc);
+                        continue;
+                    }
+
+                    // Merge details
+                    // 1. Try images from API response first
+                    if (details.images && Array.isArray(details.images)) {
+                        parsedImages = details.images
+                            .filter(img => img && img.url)
+                            .map(img => ({
+                                url: `https://lawis.at/lawis_api/v2_3/${img.url}`,
+                                caption: img.caption,
+                                comment: img.comment
+                            }));
+                    }
+
+                    // 2. If no images found, try probing
+                    if (parsedImages.length === 0) {
+                        // console.log(`  Probing images for ${simpleInc.id}...`);
+                        parsedImages = await probeImages(simpleInc.id);
+                    } else {
+                        // console.log(`  Found ${parsedImages.length} images from API for ${simpleInc.id}.`);
+                    }
+
+                    // DOWNLOAD IMAGES
+                    for (const img of parsedImages) {
+                        try {
+                            const localRelPath = await downloadImage(img.url, simpleInc.id);
+                            if (localRelPath) {
+                                img.local_path = localRelPath.replace(/\\/g, '/'); // Normalize for JSON
+                            }
+                        } catch (e) {
+                            console.error(`Failed to download image ${img.url}`, e);
+                        }
+                    }
+
+                    if (details.comments) {
+                        console.log(`  Translating text for ${simpleInc.id}...`);
+                        commentsEn = await translateText(details.comments);
+                        if (commentsEn) console.log(`  -> Success!`);
+                        else console.log(`  -> Failed.`);
+                    }
+
+                    finalInc = {
+                        ...simpleInc,
+                        details: {
+                            ...details,
+                            images: parsedImages,
+                            comments_en: commentsEn
+                        }
+                    };
                 }
 
-                detailedIncidents.push({
-                    ...simpleInc,
-                    details: {
-                        ...details,
-                        images: parsedImages,
-                        comments_en: commentsEn
-                    }
-                });
+                // ALWAYS Re-Run PDF Logic
+                await ensurePdfLink(finalInc);
+
+                detailedIncidents.push(finalInc);
 
             } catch (err) {
                 console.error(`Failed to fetch details for ${simpleInc.id}`, err);
@@ -416,4 +417,67 @@ async function translateText(text) {
 function callTranslate(url, text) {
     // Deprecated for Google API
     return null;
+}
+
+async function ensurePdfLink(inc) {
+    const DAILY_PDF_DIR = path.join(__dirname, '../data/pdfs');
+    const INCIDENT_PDF_DIR = path.join(__dirname, '../data/incident_bulletins');
+
+    const dateStr = inc.date || (inc.details && inc.details.date);
+    if (!dateStr) return;
+    const iDate = dateStr.split(' ')[0].split('T')[0];
+
+    // Priority slugs based on heuristics, but we will check all
+    const slugs = [
+        'allgau-alps-central',
+        'allgau-alps-west',
+        'allgau-alps-east',
+        'allgau-prealps'
+    ];
+
+    // Determine a "primary" slug for copy target if we need to copy from Daily
+    let primarySlug = 'allgau-alps-central';
+    if (inc.regionId === 2) primarySlug = 'allgau-alps-west';
+    else if (inc.regionId === 1) primarySlug = 'allgau-alps-east';
+    // ... (keep refined logic if needed, but for now simple mapping is better than strict)
+
+    const dateObj = new Date(iDate);
+    if (isNaN(dateObj.getTime())) return;
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const ym = `${year}-${month}`;
+
+    let foundPath = null;
+
+    // 1. Check if it already exists in Incident Archive (any slug)
+    for (const slug of slugs) {
+        const checkPath = path.join(INCIDENT_PDF_DIR, slug, ym, `${iDate}.pdf`);
+        if (fs.existsSync(checkPath)) {
+            foundPath = `incident_bulletins/${slug}/${ym}/${iDate}.pdf`;
+            break;
+        }
+    }
+
+    // 2. If not in Incident Archive, try to find in Daily Archive (any slug) and COPY
+    if (!foundPath) {
+        for (const slug of slugs) {
+            const checkPath = path.join(DAILY_PDF_DIR, slug, `${iDate}.pdf`);
+            if (fs.existsSync(checkPath)) {
+                // Found in Daily! Copy to Incident Archive (using the SAME slug to preserve structure)
+                const targetAbsPath = path.join(INCIDENT_PDF_DIR, slug, ym, `${iDate}.pdf`);
+                try {
+                    fs.mkdirSync(path.dirname(targetAbsPath), { recursive: true });
+                    fs.copyFileSync(checkPath, targetAbsPath);
+                    foundPath = `incident_bulletins/${slug}/${ym}/${iDate}.pdf`;
+                } catch (e) {
+                    // ignore
+                }
+                break;
+            }
+        }
+    }
+
+    if (foundPath) {
+        inc.pdf_path = foundPath;
+    }
 }

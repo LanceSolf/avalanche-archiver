@@ -21,6 +21,13 @@ if (fs.existsSync(profImgSrc)) {
     fs.cpSync(profImgSrc, path.join(archiveDir, 'profile_images'), { recursive: true });
 }
 
+// Copy Incident Bulletins (New Structure)
+// User requested NOT to copy them to archive, but link to data/ directory directly.
+// const bulletinsSrc = path.join(dataDir, 'incident_bulletins');
+// if (fs.existsSync(bulletinsSrc)) {
+//    fs.cpSync(bulletinsSrc, archiveDir, { recursive: true });
+// }
+
 const REGION_CONFIG = {
     'allgau-prealps': {
         label: 'Allgäu Prealps (Sonthofen)',
@@ -350,6 +357,35 @@ function generateIncidentPage(inc) {
     const incline = details.incline ? `${details.incline}°` : 'N/A';
     const aspect = details.aspect_id ? translateAspect(details.aspect_id) : 'N/A';
 
+    // Generate PDF Link
+    let pdfLink = '<span style="color:#888; font-style:italic;">No Report</span>';
+    if (inc.pdf_path) {
+        // If it comes from the new incident_bulletins structure
+        if (inc.pdf_path.startsWith('incident_bulletins/')) {
+            // Link to ../../data/incident_bulletins/... (Relative to archive/incidents/xxx.html)
+            const pdfUrl = `../../data/${inc.pdf_path}`;
+            pdfLink = `<a href="${pdfUrl}" target="_blank" style="color:#0284c7; text-decoration:underline;">Archived Bulletin</a>`;
+        }
+        // Fallback for legacy "pdfs/" structure if any remain
+        else if (inc.pdf_path.startsWith('pdfs/')) {
+            const parts = inc.pdf_path.split('/');
+            if (parts.length >= 3) {
+                const slug = parts[1];
+                const filename = parts[2]; // date.pdf
+                const date = filename.replace('.pdf', '');
+                const month = date.slice(0, 7);
+                // Old structure was archive/{slug}/{month}/{date}.pdf.
+                // But wait, the daily fetcher stores in data/pdfs/{slug}/{date}.pdf (no month folder?).
+                // Let's check build.js logic for daily PDFs again.
+                // Lines 88-96 in build.js implies daily PDFs are flattened in data/pdfs/{slug}/ but sorted into {month} folders in archive.
+                // So line 362 `../${slug}/${month}/${filename}` was correct for the daily archive.
+                // We keep this for backward compatibility if mixed.
+                const pdfUrl = `../${slug}/${month}/${filename}`;
+                pdfLink = `<a href="${pdfUrl}" target="_blank" style="color:#0284c7; text-decoration:underline;">Archived Bulletin</a>`;
+            }
+        }
+    }
+
     // Build tables or grid
     const infoGrid = `
         <div class="incident-meta-grid">
@@ -359,6 +395,7 @@ function generateIncidentPage(inc) {
             <div class="meta-item"><strong>Incline:</strong> ${incline}</div>
             <div class="meta-item"><strong>Aspect:</strong> ${aspect}</div>
             <div class="meta-item"><strong>Coordinates:</strong> ${inc.lat}, ${inc.lon}</div>
+            ${pdfLink ? `<div class="meta-item"><strong>Forecast:</strong> ${pdfLink}</div>` : ''}
         </div>
     `;
 
@@ -371,7 +408,7 @@ function generateIncidentPage(inc) {
             <p style="color:#666; font-size:0.9rem;">Snow pits within 500m & 7 days.</p>
             <div style="display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top:1rem;">
                 ${inc.linked_profiles.map(p => {
-            const imgUrl = p.local_path ? `../../${p.local_path}` : p.url;
+            const imgUrl = p.local_path ? `../${p.local_path}` : p.url;
             return `
                     <div style="background:#f0f9ff; padding:1rem; border-radius:8px; border:1px solid #bae6fd;">
                         <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
@@ -397,7 +434,7 @@ function generateIncidentPage(inc) {
             <h3>Images</h3>
             <div class="gallery-grid">
                 ${details.images.map(img => {
-            const imgUrl = img.local_path ? `../../${img.local_path}` : img.url;
+            const imgUrl = img.local_path ? `../${img.local_path}` : img.url;
             return `
                     <div class="gallery-item">
                         <a href="${imgUrl}" target="_blank">

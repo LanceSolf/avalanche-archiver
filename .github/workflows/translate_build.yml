@@ -31,6 +31,9 @@ jobs:
       - name: Fetch Profiles
         run: node tools/process_profiles.js
 
+      - name: Fetch Incident PDFs
+        run: node tools/fetch_incident_pdfs.js
+
       - name: Build site
         run: npm run build
 
