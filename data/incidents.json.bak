@@ -1,0 +1,202 @@
+[
+  {
+    "id": 9678,
+    "date": "2019-01-31 10:00:00",
+    "location": "Krinnenspitze",
+    "regionId": 1,
+    "subregionId": 158,
+    "lat": 47.47361,
+    "lon": 10.58445,
+    "url": "https://lawis.at/incident/9678"
+  },
+  {
+    "id": 9698,
+    "date": "2019-02-16 12:19:00",
+    "location": "Schoppernau / Rodelbahn Neuhornbach",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.31428,
+    "lon": 10.04553,
+    "url": "https://lawis.at/incident/9698"
+  },
+  {
+    "id": 9729,
+    "date": "2019-03-21 10:15:00",
+    "location": "Krinnenspitze",
+    "regionId": 1,
+    "subregionId": 158,
+    "lat": 47.47372,
+    "lon": 10.59282,
+    "url": "https://lawis.at/incident/9729"
+  },
+  {
+    "id": 9470,
+    "date": "2018-12-09 15:15:00",
+    "location": "Kemptner Scharte",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.29759,
+    "lon": 10.19694,
+    "url": "https://lawis.at/incident/9470"
+  },
+  {
+    "id": 9760,
+    "date": "2019-05-17 16:00:00",
+    "location": "Großer Widderstein / Karlstor",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.28666,
+    "lon": 10.13085,
+    "url": "https://lawis.at/incident/9760"
+  },
+  {
+    "id": 9527,
+    "date": "2019-01-06 14:30:00",
+    "location": "Schoppernau: Diedamskopf - freier Schiraum",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.33229,
+    "lon": 10.02682,
+    "url": "https://lawis.at/incident/9527"
+  },
+  {
+    "id": 9787,
+    "date": "2019-12-15 11:30:00",
+    "location": "Hoher Ifen, \"Ifenmulde\" / Kleinwalsertal",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.35484,
+    "lon": 10.10102,
+    "url": "https://lawis.at/incident/9787"
+  },
+  {
+    "id": 9901,
+    "date": "2020-12-10 11:22:00",
+    "location": "Ifenmulde / Hirschegg, Kleinwalsertal",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.355,
+    "lon": 10.102,
+    "url": "https://lawis.at/incident/9901"
+  },
+  {
+    "id": 10354,
+    "date": "2021-12-29 11:00:00",
+    "location": "Haldenwangerkopf / Warth",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.277,
+    "lon": 10.17328,
+    "url": "https://lawis.at/incident/10354"
+  },
+  {
+    "id": 10601,
+    "date": "2023-02-03 00:00:00",
+    "location": "Walmendingerhorn - freier Schiraum",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.32746,
+    "lon": 10.1346,
+    "url": "https://lawis.at/incident/10601"
+  },
+  {
+    "id": 10652,
+    "date": "2023-02-04 15:15:00",
+    "location": "Hählekopf / Egg",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.34448,
+    "lon": 10.07692,
+    "url": "https://lawis.at/incident/10652"
+  },
+  {
+    "id": 10651,
+    "date": "2023-02-05 10:30:00",
+    "location": "Höferspitze / Mittelberg",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.2753,
+    "lon": 10.1036,
+    "url": "https://lawis.at/incident/10651"
+  },
+  {
+    "id": 10796,
+    "date": "2024-01-14 13:25:00",
+    "location": "Nesselwängler Scharte",
+    "regionId": 1,
+    "subregionId": 158,
+    "lat": 47.50441,
+    "lon": 10.62584,
+    "url": "https://lawis.at/incident/10796"
+  },
+  {
+    "id": 10797,
+    "date": "2024-01-14 12:03:00",
+    "location": "Brentenjoch",
+    "regionId": 1,
+    "subregionId": 158,
+    "lat": 47.53359,
+    "lon": 10.58062,
+    "url": "https://lawis.at/incident/10797"
+  },
+  {
+    "id": 10791,
+    "date": "2024-01-14 12:53:00",
+    "location": "Stuiben Sennalpe",
+    "regionId": 1,
+    "subregionId": 158,
+    "lat": 47.4955,
+    "lon": 10.44167,
+    "url": "https://lawis.at/incident/10791"
+  },
+  {
+    "id": 10770,
+    "date": "2024-01-09 10:50:00",
+    "location": "Hirschegg",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.33263,
+    "lon": 10.06974,
+    "url": "https://lawis.at/incident/10770"
+  },
+  {
+    "id": 10872,
+    "date": "2024-01-16 12:04:00",
+    "location": "Gaichtspitze",
+    "regionId": 1,
+    "subregionId": 158,
+    "lat": 47.46683,
+    "lon": 10.64267,
+    "url": "https://lawis.at/incident/10872"
+  },
+  {
+    "id": 10883,
+    "date": "2024-03-07 10:31:00",
+    "location": "Güntlespitze",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.30069,
+    "lon": 10.07901,
+    "url": "https://lawis.at/incident/10883"
+  },
+  {
+    "id": 10912,
+    "date": "2024-03-17 15:20:00",
+    "location": "Steinmandl / Schwarzwassertal",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.32991,
+    "lon": 10.0725,
+    "url": "https://lawis.at/incident/10912"
+  },
+  {
+    "id": 10986,
+    "date": "2024-12-15 10:38:00",
+    "location": "Ifenmulde / Hirschegg",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.35357,
+    "lon": 10.10523,
+    "url": "https://lawis.at/incident/10986"
+  }
+]

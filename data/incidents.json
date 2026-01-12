@@ -1,0 +1,2041 @@
+[
+  {
+    "id": 9678,
+    "date": "2019-01-31 10:00:00",
+    "location": "Krinnenspitze",
+    "regionId": 1,
+    "subregionId": 158,
+    "lat": 47.47361,
+    "lon": 10.58445,
+    "url": "https://lawis.at/incident/9678",
+    "details": {
+      "id": 9678,
+      "valid_time": true,
+      "date": "2019-01-31T10:00:00+01:00",
+      "reported": {
+        "date": "2019-02-15T11:43:52+01:00",
+        "name": "LWD Tirol",
+        "email": null
+      },
+      "involved": {
+        "dead": 0,
+        "injured": 0,
+        "uninjured": 1,
+        "sweeped": 0,
+        "buried_partial": 0,
+        "buried_total": 0,
+        "equipment": {
+          "standard": {
+            "id": 0,
+            "text": "unknown"
+          },
+          "lvs": {
+            "id": 0,
+            "text": "unknown"
+          },
+          "airbag": {
+            "id": 0,
+            "text": "unknown"
+          }
+        },
+        "ascent_descent": {
+          "id": 2,
+          "text": "descent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 3,
+          "level": 3,
+          "text": "considerable"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 60,
+          "width": 30
+        },
+        "breakheight": null,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 1,
+          "text": "1: small avalanche"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        },
+        "humidity": {
+          "id": 1,
+          "text": "dry"
+        }
+      },
+      "location": {
+        "name": "Krinnenspitze",
+        "elevation": 1960,
+        "longitude": 10.58445,
+        "latitude": 47.47361,
+        "slope_angle": 37,
+        "aspect": {
+          "id": 6,
+          "text": "SW"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 1,
+          "text": "Tirol"
+        },
+        "subregion": {
+          "id": 158,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "images": [],
+      "comments_en": null
+    }
+  },
+  {
+    "id": 9698,
+    "date": "2019-02-16 12:19:00",
+    "location": "Schoppernau / Rodelbahn Neuhornbach",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.31428,
+    "lon": 10.04553,
+    "url": "https://lawis.at/incident/9698",
+    "details": {
+      "id": 9698,
+      "comments": "Um 12.19 Uhr wurde die Leitstelle über einen Lawinenabgang auf die gesperrte Naturrodelbahn unterhalb der Hornbachalpe informiert. Bei sofortigen Erhebungen vor Ort wurde festgestellt, daß die gesperrte Rodelbahn an zwei Stellen komplett verschüttet wurde. Es wurde sofort eine LVS-Suche und anschließend eine Recco - Suche durchgeführt. Da keine Signale wahrgenommen wurden, erfolgte eine Sondierung der betroffenen Bereiche. Die Suche verlief negativ, sodaß der Einsatz um 14.39 Uhr abgebrochen wurde. Glücklicherweise - trotz Sperrung war der Weg bzw. die Rodelbahn stark frequentiert (Winterwanderer, Rodler, Schitourengeher) - wurde niemand verschüttet bzw. verletzt. Quelle &#38; Bild: PI Götzis",
+      "valid_time": true,
+      "images": [
+        {
+          "url": "https://lawis.at/lawis_api/v2_3/files/incidents/incident_9698_000.jpg"
+        }
+      ],
+      "date": "2019-02-16T12:19:00+01:00",
+      "reported": {
+        "date": "2019-02-19T10:32:21+01:00",
+        "name": "A. Pecl / LWD Vorarlberg",
+        "email": null
+      },
+      "involved": {
+        "dead": 0,
+        "injured": 0,
+        "uninjured": 0,
+        "sweeped": 0,
+        "buried_partial": 0,
+        "buried_total": 0,
+        "equipment": []
+      },
+      "danger": {
+        "rating": {
+          "id": 2,
+          "level": 2,
+          "text": "moderate"
+        },
+        "problem": {
+          "id": 4,
+          "text": "wet snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 400,
+          "width": 62
+        },
+        "breakheight": null,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 2,
+          "text": "2: medium avalanche"
+        },
+        "release": {
+          "id": 2,
+          "text": "spontaneous"
+        }
+      },
+      "location": {
+        "name": "Schoppernau / Rodelbahn Neuhornbach",
+        "elevation": 1185,
+        "longitude": 10.04553,
+        "latitude": 47.31428,
+        "aspect": {
+          "id": 6,
+          "text": "SW"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "comments_en": "At 12:19 p.m., the emergency dispatch center was informed of an avalanche on the closed natural toboggan run below the Hornbachalpe. Immediate on-site investigations revealed that the closed toboggan run was completely buried in two places. An avalanche transceiver search was immediately conducted, followed by a Recco search. Since no signals were detected, the affected areas were probed. The search proved unsuccessful, and the operation was called off at 2:39 p.m. Fortunately—despite the closure, the path and toboggan run were heavily frequented (winter hikers, tobogganers, ski tourers)—no one was buried or injured. Source & Image: Götzis Police Department"
+    }
+  },
+  {
+    "id": 9729,
+    "date": "2019-03-21 10:15:00",
+    "location": "Krinnenspitze",
+    "regionId": 1,
+    "subregionId": 158,
+    "lat": 47.47372,
+    "lon": 10.59282,
+    "url": "https://lawis.at/incident/9729",
+    "details": {
+      "id": 9729,
+      "comments": "1 Person beteiligt (weitere Umstände unbekannt)",
+      "valid_time": true,
+      "date": "2019-03-21T10:15:00+01:00",
+      "reported": {
+        "date": "2019-03-22T08:36:31+01:00",
+        "name": "LWD Tirol",
+        "email": null
+      },
+      "involved": {
+        "dead": 0,
+        "injured": 0,
+        "uninjured": 0,
+        "sweeped": 0,
+        "buried_partial": 0,
+        "buried_total": 0,
+        "equipment": {
+          "standard": {
+            "id": 0,
+            "text": "unknown"
+          },
+          "lvs": {
+            "id": 0,
+            "text": "unknown"
+          },
+          "airbag": {
+            "id": 0,
+            "text": "unknown"
+          }
+        },
+        "ascent_descent": {
+          "id": 0,
+          "text": "unknown"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 1,
+          "level": 1,
+          "text": "low"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": null,
+          "width": null
+        },
+        "breakheight": null,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 6,
+          "text": "unknown"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        },
+        "humidity": {
+          "id": 1,
+          "text": "dry"
+        }
+      },
+      "location": {
+        "name": "Krinnenspitze",
+        "elevation": 1750,
+        "longitude": 10.59282,
+        "latitude": 47.47372,
+        "slope_angle": 35,
+        "aspect": {
+          "id": 2,
+          "text": "NE"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 1,
+          "text": "Tirol"
+        },
+        "subregion": {
+          "id": 158,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "images": [],
+      "comments_en": "One person involved (further circumstances unknown)"
+    }
+  },
+  {
+    "id": 9470,
+    "date": "2018-12-09 15:15:00",
+    "location": "Kemptner Scharte",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.29759,
+    "lon": 10.19694,
+    "url": "https://lawis.at/incident/9470",
+    "details": {
+      "id": 9470,
+      "comments": "Zwei junge Männer wollten bei Schneetreiben und schlechter Sicht zu Fuß vom Wildental aus über die Kemptner Scharte Richtung Mindelheimer Hütte. Kurz vor der Kemptner Scharte löste sich ein Schneebrett und riss beide Männer (23 und 18 Jahre alt) ca. 200 m mit. Einer konnte sich selbst aus dem Schnee befreien und half dann seinem halb verschütteten Kollegen aus den Schneemassen. Er versorgte den am Kopf und Schienbein blutenden Kollegen und setzte einen Notruf ab. Der 23 Jährige erlitt ebenfalls Abschürfungen, Prellungen und Verletzungen an der Schulter. Die beiden Männer wurden trotz widriger Witterungsbedingungen mit dem Hubschrauber geborgen und dann mit der Rettung ins Krankenhaus nach Immenstadt gebracht.",
+      "valid_time": true,
+      "date": "2018-12-09T15:15:00+01:00",
+      "reported": {
+        "date": "2018-12-10T08:44:40+01:00",
+        "name": "Andreas Pecl LWD Vorarlberg",
+        "email": null
+      },
+      "involved": {
+        "dead": 0,
+        "injured": 2,
+        "uninjured": 0,
+        "sweeped": 2,
+        "buried_partial": 2,
+        "buried_total": 0,
+        "equipment": {
+          "standard": {
+            "id": 2,
+            "text": "no"
+          }
+        },
+        "ascent_descent": {
+          "id": 1,
+          "text": "ascent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 3,
+          "level": 3,
+          "text": "considerable"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": null,
+          "width": null
+        },
+        "breakheight": null,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 6,
+          "text": "unknown"
+        },
+        "release": {
+          "id": 0,
+          "text": "unknown"
+        }
+      },
+      "location": {
+        "name": "Kemptner Scharte",
+        "elevation": 2080,
+        "longitude": 10.19694,
+        "latitude": 47.29759,
+        "slope_angle": 40,
+        "aspect": {
+          "id": 1,
+          "text": "N"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "images": [],
+      "comments_en": "Two young men set out on foot from Wildental towards the Mindelheimer Hütte via the Kemptner Scharte pass in heavy snow and poor visibility. Shortly before reaching the pass, an avalanche broke loose and swept both men (aged 23 and 18) approximately 200 meters down the mountain. One of them managed to free himself from the snow and then helped his companion, who was partially buried, out of the snow. He tended to his companion, who was bleeding from the head and shin, and called for help. The 23-year-old also suffered abrasions, contusions, and a shoulder injury. Despite the adverse weather conditions, both men were rescued by helicopter and then transported by ambulance to the hospital in Immenstadt."
+    }
+  },
+  {
+    "id": 9760,
+    "date": "2019-05-17 16:00:00",
+    "location": "Großer Widderstein / Karlstor",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.28666,
+    "lon": 10.13085,
+    "url": "https://lawis.at/incident/9760",
+    "details": {
+      "id": 9760,
+      "comments": "Feuchte Lockerschneelawine, die in felsiger Rinne in der Nähe des Widdersteingipfels abging, vergrößerte sich im Kar unterhalb des Karlstors durch Mitnahme der durchfeuchteten Neuschneeauflage von Mitte der Woche und schob sich bis weit ins Flache Tälchen hinunter.",
+      "valid_time": true,
+      "date": "2019-05-17T16:00:00+02:00",
+      "reported": {
+        "date": "2019-05-18T08:48:28+02:00",
+        "name": "Hannes Ultsch",
+        "email": null
+      },
+      "involved": {
+        "dead": 0,
+        "injured": 1,
+        "uninjured": 0,
+        "sweeped": 1,
+        "buried_partial": 0,
+        "buried_total": 0,
+        "equipment": {
+          "standard": {
+            "id": 1,
+            "text": "yes"
+          },
+          "lvs": {
+            "id": 1,
+            "text": "yes"
+          }
+        },
+        "ascent_descent": {
+          "id": 1,
+          "text": "ascent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": null,
+          "level": null,
+          "text": null
+        },
+        "problem": {
+          "id": 4,
+          "text": "wet snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 400,
+          "width": 25
+        },
+        "breakheight": null,
+        "type": {
+          "id": 3,
+          "text": "loose"
+        },
+        "size": {
+          "id": 3,
+          "text": "3: large avalanche"
+        },
+        "release": {
+          "id": 2,
+          "text": "spontaneous"
+        },
+        "humidity": {
+          "id": 3,
+          "text": "wet"
+        }
+      },
+      "location": {
+        "name": "Großer Widderstein / Karlstor",
+        "elevation": 2000,
+        "longitude": 10.13085,
+        "latitude": 47.28666,
+        "slope_angle": 35,
+        "aspect": {
+          "id": 1,
+          "text": "N"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "images": [],
+      "comments_en": "A wet loose snow avalanche, which started in a rocky gully near the Widderstein summit, grew larger in the cirque below the Karlstor by carrying along the moistened layer of fresh snow from the middle of the week and pushed far down into the Flache Tälchen valley."
+    }
+  },
+  {
+    "id": 9527,
+    "date": "2019-01-06 14:30:00",
+    "location": "Schoppernau: Diedamskopf - freier Schiraum",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.33229,
+    "lon": 10.02682,
+    "url": "https://lawis.at/incident/9527",
+    "details": {
+      "id": 9527,
+      "comments": "Im Zuge der letzten Abfahrt auf der blau markierten Piste 20 blieben zwei mit Notfallausrüstung ausgestattete Schifahrer im Bereich Mitteldiedamskopf-Alpe am Pistenrand stehen. Der 26-Jährige verließ die Piste und begab sich in den freien Schiraum. Unmittelbar danach löste sich ein Schneebrett, welches ihn mitriss und ganz verschüttete. Seine Begleiterin, welche auf der gesicherten Piste stehengeblieben war, fuhr daraufhin auf dem Lawinenkegel ab und konnte mittels Oberflächensuche die aus dem Schnee ragenden Beine/Schischuhe ihres Begleiters ausmachen. Sie setzte einen Notruf ab und begann unverzüglich, den verschütteten Mann freizuschaufeln. Dabei wurde sie von eintreffenden Helfern und der verständigten Bergrettung unterstützt. Der Verschüttete wurde nach seiner Bergung längere Zeit reanimiert. Die Reanimationsmaßnahmen blieben leider erfolglos. Quelle: Polizeiinspektion Au",
+      "valid_time": true,
+      "images": [
+        {
+          "url": "https://lawis.at/lawis_api/v2_3/files/incidents/incident_9527_000.jpg"
+        }
+      ],
+      "date": "2019-01-06T14:30:00+01:00",
+      "reported": {
+        "date": "2019-01-08T14:57:30+01:00",
+        "name": "A. Pecl / LWD Vorarlberg",
+        "email": "andreas.pecl@lwz-vorarlberg.at"
+      },
+      "involved": {
+        "dead": 1,
+        "injured": 0,
+        "uninjured": 1,
+        "sweeped": 1,
+        "buried_partial": 0,
+        "buried_total": 1,
+        "equipment": {
+          "standard": {
+            "id": 1,
+            "text": "yes"
+          },
+          "lvs": {
+            "id": 1,
+            "text": "yes"
+          },
+          "airbag": {
+            "id": 2,
+            "text": "some"
+          }
+        },
+        "ascent_descent": {
+          "id": 2,
+          "text": "descent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 3,
+          "level": 3,
+          "text": "considerable"
+        },
+        "problem": {
+          "id": 1,
+          "text": "fresh snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 100,
+          "width": 47
+        },
+        "breakheight": 60,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 2,
+          "text": "2: medium avalanche"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        },
+        "humidity": {
+          "id": 1,
+          "text": "dry"
+        }
+      },
+      "location": {
+        "name": "Schoppernau: Diedamskopf - freier Schiraum",
+        "elevation": 1540,
+        "longitude": 10.02682,
+        "latitude": 47.33229,
+        "slope_angle": 40,
+        "aspect": {
+          "id": 4,
+          "text": "SE"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "comments_en": "During the last run on the blue-marked piste 20, two skiers equipped with emergency gear stopped at the edge of the piste in the Mitteldiedamskopf-Alpe area. The 26-year-old left the marked piste and ventured into the backcountry. Immediately afterward, a slab avalanche broke loose, sweeping him away and burying him completely. His companion, who had remained on the marked piste, skied down the avalanche debris and, using surface searching, located her companion's legs/ski boots protruding from the snow. She called for help and immediately began digging the buried man out. She was assisted by arriving helpers and the mountain rescue team. After being rescued, the buried man was given CPR for an extended period. Unfortunately, the resuscitation efforts were unsuccessful. Source: Au Police Inspectorate"
+    }
+  },
+  {
+    "id": 9787,
+    "date": "2019-12-15 11:30:00",
+    "location": "Hoher Ifen, \"Ifenmulde\" / Kleinwalsertal",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.35484,
+    "lon": 10.10102,
+    "url": "https://lawis.at/incident/9787",
+    "details": {
+      "id": 9787,
+      "comments": "Zwei Tourengeher (Ehepaar) querten vom Hahnenköpfle kommend das Gelände in Richtung Hoher Ifen und fuhren dann die sogenannte \"Ifenmulde\" ab. Während der Abfahrt löste der 60jährige, welcher vorausgefahren war, ein ca. 50 m breites und insgesamt ca. 450 m langes Schneebrett aus, wurde von diesem erfasst, ca. 245 m mitgerissen und verschüttet. Seine Gattin blieb unversehrt. Augenzeugen des Vorfalls alarmierten die Rettungskräfte, welche den Mann nach ca. einer Stunde mittels Sonde in drei Meter Tiefe orten und ausgraben konnten. Die Reanimationsversuche durch zwei Notärzte vor Ort blieben ergebnislos. Quelle: PI Kleinwalsertal; mod. Text: Pecl A., LWD Vorarlberg",
+      "valid_time": true,
+      "date": "2019-12-15T11:30:00+01:00",
+      "reported": {
+        "date": "2019-12-15T18:47:53+01:00",
+        "name": "Andreas Pecl / LWD",
+        "email": null
+      },
+      "involved": {
+        "dead": 1,
+        "injured": 0,
+        "uninjured": 1,
+        "sweeped": 1,
+        "buried_partial": 0,
+        "buried_total": 1,
+        "equipment": {
+          "standard": {
+            "id": 0,
+            "text": "unknown"
+          },
+          "lvs": {
+            "id": 2,
+            "text": "no"
+          },
+          "airbag": {
+            "id": 0,
+            "text": "unknown"
+          }
+        },
+        "ascent_descent": {
+          "id": 2,
+          "text": "descent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 3,
+          "level": 3,
+          "text": "considerable"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 450,
+          "width": 122
+        },
+        "breakheight": 60,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 2,
+          "text": "2: medium avalanche"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        }
+      },
+      "location": {
+        "name": "Hoher Ifen, \"Ifenmulde\" / Kleinwalsertal",
+        "elevation": 2100,
+        "longitude": 10.10102,
+        "latitude": 47.35484,
+        "slope_angle": 35,
+        "aspect": {
+          "id": 3,
+          "text": "E"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "images": [],
+      "comments_en": "Two ski tourers (a married couple) were traversing the terrain from Hahnenköpfle towards Hoher Ifen and then skied down the so-called \"Ifenmulde\" (Ifen basin). During the descent, the 60-year-old man, who was skiing ahead, triggered an avalanche approximately 50 meters wide and 450 meters long. He was caught in the avalanche, carried approximately 245 meters, and buried. His wife was unharmed. Eyewitnesses to the incident alerted the rescue services, who located the man about an hour later using a probe at a depth of three meters and were able to dig him out. Resuscitation attempts by two emergency physicians at the scene were unsuccessful. Source: PI Kleinwalsertal; modified text: Pecl A., LWD Vorarlberg"
+    }
+  },
+  {
+    "id": 9901,
+    "date": "2020-12-10 11:22:00",
+    "location": "Ifenmulde / Hirschegg, Kleinwalsertal",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.355,
+    "lon": 10.102,
+    "url": "https://lawis.at/incident/9901",
+    "details": {
+      "id": 9901,
+      "comments": "Zwei Tourengeher querten die Ifenmulde Richtung Hoher Ifen. Dabei lösten sie ein Schneebrett aus. Einer wurde ca. 30 m mitgerissen, aber nicht verschüttet. Niemand wurde verletzt. Anschliessend setzten beide ihre Tour fort. Quelle: PI Kleinwalsertal und Erhebungen der LWK Kleinwalsertal - siehe dazu auch Schneeprofil vom 11.12.2020; Bild: LWD Pecl",
+      "valid_time": true,
+      "images": [
+        {
+          "url": "https://lawis.at/lawis_api/v2_3/files/incidents/incident_9901_000.jpg"
+        }
+      ],
+      "date": "2020-12-10T11:22:00+01:00",
+      "reported": {
+        "date": "2020-12-12T09:37:25+01:00",
+        "name": "Andreas Pecl / LWD Vorarlberg",
+        "email": "lawinenwarndienst@lwz-vorarlberg.at"
+      },
+      "involved": {
+        "dead": 0,
+        "injured": 0,
+        "uninjured": 2,
+        "sweeped": 1,
+        "buried_partial": 0,
+        "buried_total": 0,
+        "equipment": {
+          "standard": {
+            "id": 0,
+            "text": "unknown"
+          },
+          "lvs": {
+            "id": 0,
+            "text": "unknown"
+          },
+          "airbag": {
+            "id": 0,
+            "text": "unknown"
+          }
+        },
+        "ascent_descent": {
+          "id": 1,
+          "text": "ascent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 2,
+          "level": 2,
+          "text": "moderate"
+        },
+        "problem": {
+          "id": 3,
+          "text": "old snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 150,
+          "width": 25
+        },
+        "breakheight": 50,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 2,
+          "text": "2: medium avalanche"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        },
+        "humidity": {
+          "id": 1,
+          "text": "dry"
+        }
+      },
+      "location": {
+        "name": "Ifenmulde / Hirschegg, Kleinwalsertal",
+        "elevation": 2080,
+        "longitude": 10.102,
+        "latitude": 47.355,
+        "slope_angle": 41,
+        "aspect": {
+          "id": 2,
+          "text": "NE"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "comments_en": "Two ski tourers were traversing the Ifen basin towards the Hoher Ifen when they triggered an avalanche. One of them was swept approximately 30 meters but was not buried. No one was injured. Both then continued their tour. Source: PI Kleinwalsertal and surveys by the LWK Kleinwalsertal – see also snow profile from December 11, 2020; Photo: LWD Pecl"
+    }
+  },
+  {
+    "id": 10354,
+    "date": "2021-12-29 11:00:00",
+    "location": "Haldenwangerkopf / Warth",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.277,
+    "lon": 10.17328,
+    "url": "https://lawis.at/incident/10354",
+    "details": {
+      "id": 10354,
+      "comments": "Lawineneckdaten von Alpinpolizei geschätzt;",
+      "valid_time": true,
+      "date": "2021-12-29T11:00:00+01:00",
+      "reported": {
+        "date": "2022-01-03T15:20:15+01:00",
+        "name": "A. Pecl / LWD Vorarlberg",
+        "email": "andreas.pecl@lwz-vorarlberg.at"
+      },
+      "involved": {
+        "dead": 0,
+        "injured": 0,
+        "uninjured": 4,
+        "sweeped": 1,
+        "buried_partial": 1,
+        "buried_total": null,
+        "equipment": {
+          "standard": {
+            "id": 1,
+            "text": "yes"
+          },
+          "lvs": {
+            "id": 1,
+            "text": "yes"
+          },
+          "airbag": {
+            "id": 1,
+            "text": "all"
+          }
+        },
+        "ascent_descent": {
+          "id": 2,
+          "text": "descent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 3,
+          "level": 3,
+          "text": "considerable"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 60,
+          "width": 20
+        },
+        "breakheight": 25,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 1,
+          "text": "1: small avalanche"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        },
+        "humidity": {
+          "id": 0,
+          "text": "unknown"
+        }
+      },
+      "location": {
+        "name": "Haldenwangerkopf / Warth",
+        "elevation": 2000,
+        "longitude": 10.17328,
+        "latitude": 47.277,
+        "slope_angle": 30,
+        "aspect": {
+          "id": 4,
+          "text": "SE"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "images": [],
+      "comments_en": "Avalanche parameters estimated by the Alpine police;"
+    }
+  },
+  {
+    "id": 10601,
+    "date": "2023-02-03 00:00:00",
+    "location": "Walmendingerhorn - freier Schiraum",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.32746,
+    "lon": 10.1346,
+    "url": "https://lawis.at/incident/10601",
+    "details": {
+      "id": 10601,
+      "comments": "1 Freerider war alleine unterwegs und wurde am Abend als vermisst gemeldet. Er wurde am Morgen des Nächsten Tages von der Bergrettung in einer Lawine tot aufgefunden. Er hatte ein aktiviertes LVS Gerät bei sich und trug einen Airbag. Dieser war jedoch nicht ausgelöst. Mehrere Details noch offen (Neigung mind. 35 Grad, genaue Höhe, Einfahrtsbereich, Lawinenausmaße, ...) Quelle: PI Kleinwalsertal",
+      "valid_time": true,
+      "date": "2023-02-03T00:00:00+01:00",
+      "reported": {
+        "date": "2023-02-05T17:08:44+01:00",
+        "name": "LWD Vlbg / A.P.",
+        "email": "lawinenwarndienst@lwz-vorarlberg.at"
+      },
+      "involved": {
+        "dead": 1,
+        "injured": null,
+        "uninjured": null,
+        "sweeped": 1,
+        "buried_partial": null,
+        "buried_total": 1,
+        "equipment": {
+          "standard": {
+            "id": 1,
+            "text": "yes"
+          },
+          "lvs": {
+            "id": 1,
+            "text": "yes"
+          },
+          "airbag": {
+            "id": 1,
+            "text": "all"
+          }
+        },
+        "ascent_descent": {
+          "id": 2,
+          "text": "descent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 3,
+          "level": 3,
+          "text": "considerable"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": null,
+          "width": null
+        },
+        "breakheight": null,
+        "type": {
+          "id": 4,
+          "text": "unknown"
+        },
+        "size": {
+          "id": 6,
+          "text": "unknown"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        },
+        "humidity": {
+          "id": 0,
+          "text": "unknown"
+        }
+      },
+      "location": {
+        "name": "Walmendingerhorn - freier Schiraum",
+        "elevation": 1700,
+        "longitude": 10.1346,
+        "latitude": 47.32746,
+        "slope_angle": 35,
+        "aspect": {
+          "id": 1,
+          "text": "N"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "images": [],
+      "comments_en": "One freerider was skiing alone and was reported missing in the evening. He was found dead in an avalanche by mountain rescue the following morning. He was carrying an activated avalanche transceiver and an airbag, which had not deployed. Several details are still unclear (slope at least 35 degrees, exact altitude, entry point, avalanche dimensions, etc.). Source: Kleinwalsertal Police Inspectorate"
+    }
+  },
+  {
+    "id": 10652,
+    "date": "2023-02-04 15:15:00",
+    "location": "Hählekopf / Egg",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.34448,
+    "lon": 10.07692,
+    "url": "https://lawis.at/incident/10652",
+    "details": {
+      "id": 10652,
+      "comments": "Eine neunköpfige ST-Gruppe war am Hählekopf unterwegs. Bei der Abfahrt - es wurde einzeln gefahren - löste die vierte Person ein Schneebrett aus und wurde teilverschüttet. Sie konnte sich selbst befreien und blieb - wie alle anderen auch - unverletzt. Quelle: schriftliche Infos mit geschätzen Eckdaten an den Lawinenwarndienst durch eine der beteiligten Personen",
+      "not_buried": 8,
+      "valid_time": true,
+      "date": "2023-02-04T15:15:00+01:00",
+      "reported": {
+        "date": "2023-02-16T11:45:41+01:00",
+        "name": "LWD Vlbg / A.P.",
+        "email": "lawinenwarndienst@lwz-vorarlberg.at"
+      },
+      "involved": {
+        "dead": null,
+        "injured": null,
+        "uninjured": 9,
+        "sweeped": 1,
+        "buried_partial": 1,
+        "buried_total": null,
+        "equipment": {
+          "standard": {
+            "id": 1,
+            "text": "yes"
+          },
+          "lvs": {
+            "id": 0,
+            "text": "unknown"
+          },
+          "airbag": {
+            "id": 0,
+            "text": "unknown"
+          }
+        },
+        "ascent_descent": {
+          "id": 2,
+          "text": "descent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 3,
+          "level": 3,
+          "text": "considerable"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 40,
+          "width": 80
+        },
+        "breakheight": 45,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 2,
+          "text": "2: medium avalanche"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        },
+        "humidity": {
+          "id": 0,
+          "text": "unknown"
+        }
+      },
+      "location": {
+        "name": "Hählekopf / Egg",
+        "elevation": 1920,
+        "longitude": 10.07692,
+        "latitude": 47.34448,
+        "slope_angle": 30,
+        "aspect": {
+          "id": 2,
+          "text": "NE"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "images": [],
+      "comments_en": "A group of nine skiers was on the Hählekopf mountain. During the descent – they were skiing one at a time – the fourth person triggered an avalanche and was partially buried. They were able to free themselves and, like everyone else, remained unharmed. Source: written information with estimated key data submitted to the avalanche warning service by one of the participants."
+    }
+  },
+  {
+    "id": 10651,
+    "date": "2023-02-05 10:30:00",
+    "location": "Höferspitze / Mittelberg",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.2753,
+    "lon": 10.1036,
+    "url": "https://lawis.at/incident/10651",
+    "details": {
+      "id": 10651,
+      "comments": "Ein Schitourengeher löste bei der Abfahrt ca. 100 m unter dem Gipfel ein ca. 200 m breites und ca. 300 m langes Schneebrett aus (Neigung aus Karte gemessen mind. 35 Grad). Er wurde ca. 300 m mitgerissen und bis zum Brustbereich verschüttet. Er konnte sich selbst befreien und blieb unverletzt. Sein Begleiter wurde nicht erfasst. Sie verständigten die Rettungsleitstelle über den Vorfall. Aus Sicherheitsgründen erfolgte sodann eine LVS-Suche durch die Bergrettung. Quelle: PI Kleinwalsertal",
+      "valid_time": true,
+      "date": "2023-02-05T10:30:00+01:00",
+      "reported": {
+        "date": "2023-02-16T11:17:03+01:00",
+        "name": "LWD Vlbg",
+        "email": "lawinenwarndienst@lwz-vorarlberg.at"
+      },
+      "involved": {
+        "dead": null,
+        "injured": null,
+        "uninjured": 2,
+        "sweeped": 1,
+        "buried_partial": 1,
+        "buried_total": null,
+        "equipment": {
+          "standard": {
+            "id": 1,
+            "text": "yes"
+          }
+        },
+        "ascent_descent": {
+          "id": 2,
+          "text": "descent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 3,
+          "level": 3,
+          "text": "considerable"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 300,
+          "width": 200
+        },
+        "breakheight": null,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 3,
+          "text": "3: large avalanche"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        }
+      },
+      "location": {
+        "name": "Höferspitze / Mittelberg",
+        "elevation": 2000,
+        "longitude": 10.1036,
+        "latitude": 47.2753,
+        "slope_angle": 35,
+        "aspect": {
+          "id": 2,
+          "text": "NE"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "images": [],
+      "comments_en": "A ski tourer triggered an avalanche approximately 200 meters wide and 300 meters long (slope measured at least 35 degrees according to the map) while descending about 100 meters below the summit. He was swept away for about 300 meters and buried up to his chest. He was able to free himself and was unharmed. His companion was not caught in the avalanche. They notified the rescue coordination center of the incident. For safety reasons, a search was then conducted by the mountain rescue team using avalanche transceivers. Source: Kleinwalsertal Police Inspectorate"
+    }
+  },
+  {
+    "id": 10796,
+    "date": "2024-01-14 13:25:00",
+    "location": "Nesselwängler Scharte",
+    "regionId": 1,
+    "subregionId": 158,
+    "lat": 47.50441,
+    "lon": 10.62584,
+    "url": "https://lawis.at/incident/10796",
+    "details": {
+      "id": 10796,
+      "comments": "Koordinaten nicht verifiziert",
+      "not_buried": 1,
+      "valid_time": true,
+      "date": "2024-01-14T13:25:00+01:00",
+      "reported": {
+        "date": "2024-01-15T17:16:13+01:00",
+        "name": "LWD Tirol",
+        "email": "lawine@tirol.gv.at"
+      },
+      "involved": {
+        "dead": 0,
+        "injured": 1,
+        "uninjured": 0,
+        "sweeped": 1,
+        "buried_partial": 0,
+        "buried_total": 0,
+        "equipment": {
+          "airbag": {
+            "id": 3,
+            "text": "none"
+          }
+        },
+        "ascent_descent": {
+          "id": 1,
+          "text": "ascent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 2,
+          "level": 2,
+          "text": "moderate"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": null,
+          "width": 50
+        },
+        "breakheight": null,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 6,
+          "text": "unknown"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        },
+        "humidity": {
+          "id": 1,
+          "text": "dry"
+        }
+      },
+      "location": {
+        "name": "Nesselwängler Scharte",
+        "longitude": 10.62584,
+        "latitude": 47.50441,
+        "aspect": {
+          "id": 1,
+          "text": "N"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 1,
+          "text": "Tirol"
+        },
+        "subregion": {
+          "id": 158,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "images": [],
+      "comments_en": "Coordinates not verified"
+    }
+  },
+  {
+    "id": 10797,
+    "date": "2024-01-14 12:03:00",
+    "location": "Brentenjoch",
+    "regionId": 1,
+    "subregionId": 158,
+    "lat": 47.53359,
+    "lon": 10.58062,
+    "url": "https://lawis.at/incident/10797",
+    "details": {
+      "id": 10797,
+      "not_buried": 1,
+      "valid_time": true,
+      "date": "2024-01-14T12:03:00+01:00",
+      "reported": {
+        "date": "2024-01-15T17:33:41+01:00",
+        "name": "LWD Tirol",
+        "email": "lawine@tirol.gv.at"
+      },
+      "involved": {
+        "dead": 0,
+        "injured": 0,
+        "uninjured": 1,
+        "sweeped": 1,
+        "buried_partial": 0,
+        "buried_total": 0,
+        "equipment": [],
+        "ascent_descent": {
+          "id": 2,
+          "text": "descent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 2,
+          "level": 2,
+          "text": "moderate"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 130,
+          "width": 20
+        },
+        "breakheight": 50,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 2,
+          "text": "2: medium avalanche"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        },
+        "humidity": {
+          "id": 1,
+          "text": "dry"
+        }
+      },
+      "location": {
+        "name": "Brentenjoch",
+        "elevation": 1750,
+        "longitude": 10.58062,
+        "latitude": 47.53359,
+        "slope_angle": 40,
+        "aspect": {
+          "id": 1,
+          "text": "N"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 1,
+          "text": "Tirol"
+        },
+        "subregion": {
+          "id": 158,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "images": [],
+      "comments_en": null
+    }
+  },
+  {
+    "id": 10791,
+    "date": "2024-01-14 12:53:00",
+    "location": "Stuiben Sennalpe",
+    "regionId": 1,
+    "subregionId": 158,
+    "lat": 47.4955,
+    "lon": 10.44167,
+    "url": "https://lawis.at/incident/10791",
+    "details": {
+      "id": 10791,
+      "comments": "Koordinaten nicht verifiziert",
+      "valid_time": true,
+      "date": "2024-01-14T12:53:00+01:00",
+      "reported": {
+        "date": "2024-01-15T16:44:33+01:00",
+        "name": "LWD Tirol",
+        "email": "lawine@tirol.gv.at"
+      },
+      "involved": {
+        "dead": 0,
+        "injured": 0,
+        "uninjured": null,
+        "sweeped": null,
+        "buried_partial": 0,
+        "buried_total": 0,
+        "equipment": [],
+        "ascent_descent": {
+          "id": 1,
+          "text": "ascent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 1,
+          "level": 1,
+          "text": "low"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 100,
+          "width": 20
+        },
+        "breakheight": null,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 6,
+          "text": "unknown"
+        },
+        "humidity": {
+          "id": 1,
+          "text": "dry"
+        }
+      },
+      "location": {
+        "name": "Stuiben Sennalpe",
+        "elevation": 1530,
+        "longitude": 10.44167,
+        "latitude": 47.4955,
+        "slope_angle": 30,
+        "aspect": {
+          "id": 3,
+          "text": "E"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 1,
+          "text": "Tirol"
+        },
+        "subregion": {
+          "id": 158,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "images": [],
+      "comments_en": "Coordinates not verified"
+    }
+  },
+  {
+    "id": 10770,
+    "date": "2024-01-09 10:50:00",
+    "location": "Hirschegg",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.33263,
+    "lon": 10.06974,
+    "url": "https://lawis.at/incident/10770",
+    "details": {
+      "id": 10770,
+      "comments": "Zwei Skifahrer fuhren einzeln in den Nordwest-Hang des Steinmandl ein wobei durch den vorausfahrenden eine kleines Schneebrett ausgelöst wurde. Anhand der Spurenlage dürfte der vorausfahrende Skifahrer ca. 30 Meter mitgerissen, jedoch nicht verschüttet worden sein. Die beiden Skifahrer fuhren anschließend Richtung Gerachsattel ab. Einsatzmeldung durch einen Zeugen, welcher dies vom Hählekopf aus beobachtete und eine Person als verschüttet glaubte.",
+      "not_buried": 1,
+      "valid_time": true,
+      "images": [
+        {
+          "url": "https://lawis.at/lawis_api/v2_3/files/incidents/incident_10770_000.jpg"
+        },
+        {
+          "url": "https://lawis.at/lawis_api/v2_3/files/incidents/incident_10770_001.jpg"
+        }
+      ],
+      "date": "2024-01-09T10:50:00+01:00",
+      "reported": {
+        "date": "2024-01-09T16:30:53+01:00",
+        "name": "David Kögler / Christl Kohler (LAKOM / Alpinpolizei)",
+        "email": "david.koegler@polizei.gv.at"
+      },
+      "involved": {
+        "dead": 0,
+        "injured": 0,
+        "uninjured": 2,
+        "sweeped": 1,
+        "buried_partial": 0,
+        "buried_total": 0,
+        "equipment": {
+          "standard": {
+            "id": 0,
+            "text": "unknown"
+          },
+          "lvs": {
+            "id": 0,
+            "text": "unknown"
+          },
+          "airbag": {
+            "id": 0,
+            "text": "unknown"
+          }
+        },
+        "ascent_descent": {
+          "id": 2,
+          "text": "descent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 3,
+          "level": 3,
+          "text": "considerable"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 120,
+          "width": 20
+        },
+        "breakheight": 15,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 1,
+          "text": "1: small avalanche"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        },
+        "humidity": {
+          "id": 1,
+          "text": "dry"
+        }
+      },
+      "location": {
+        "name": "Hirschegg",
+        "elevation": 1960,
+        "longitude": 10.06974,
+        "latitude": 47.33263,
+        "slope_angle": 36,
+        "aspect": {
+          "id": 8,
+          "text": "NW"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "comments_en": "Two skiers were skiing individually down the northwest-facing slope of the Steinmandl when the skier in front triggered a small avalanche. Based on the tracks, the skier in front was likely carried approximately 30 meters but not buried. The two skiers then continued skiing towards the Gerachsattel. A witness, who observed this from the Hählekopf and believed one person was buried, reported the incident to the emergency services."
+    }
+  },
+  {
+    "id": 10872,
+    "date": "2024-01-16 12:04:00",
+    "location": "Gaichtspitze",
+    "regionId": 1,
+    "subregionId": 158,
+    "lat": 47.46683,
+    "lon": 10.64267,
+    "url": "https://lawis.at/incident/10872",
+    "details": {
+      "id": 10872,
+      "comments": "Koordinaten nicht verifiziert",
+      "valid_time": true,
+      "date": "2024-01-16T12:04:00+01:00",
+      "reported": {
+        "date": "2024-02-28T18:00:51+01:00",
+        "name": "LWD Tirol",
+        "email": "lawine@tirol.gv.at"
+      },
+      "involved": {
+        "dead": 0,
+        "injured": 0,
+        "uninjured": null,
+        "sweeped": null,
+        "buried_partial": 0,
+        "buried_total": 0,
+        "equipment": []
+      },
+      "danger": {
+        "rating": {
+          "id": 3,
+          "level": 3,
+          "text": "considerable"
+        },
+        "problem": {
+          "id": 0,
+          "text": null
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 200,
+          "width": 30
+        },
+        "breakheight": null,
+        "type": {
+          "id": 4,
+          "text": "unknown"
+        },
+        "size": {
+          "id": 6,
+          "text": "unknown"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        }
+      },
+      "location": {
+        "name": "Gaichtspitze",
+        "longitude": 10.64267,
+        "latitude": 47.46683,
+        "aspect": {
+          "id": 9,
+          "text": "unknown"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 1,
+          "text": "Tirol"
+        },
+        "subregion": {
+          "id": 158,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "images": [],
+      "comments_en": "Coordinates not verified"
+    }
+  },
+  {
+    "id": 10883,
+    "date": "2024-03-07 10:31:00",
+    "location": "Güntlespitze",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.30069,
+    "lon": 10.07901,
+    "url": "https://lawis.at/incident/10883",
+    "details": {
+      "id": 10883,
+      "comments": "Bei Einfahrt in sehr steilen N-Hang wurde kleines Schneebrett ausgelöst; Quelle: Rückmeldung an den Lawinenwarndienst",
+      "valid_time": true,
+      "images": [
+        {
+          "url": "https://lawis.at/lawis_api/v2_3/files/incidents/incident_10883_000.jpg"
+        }
+      ],
+      "date": "2024-03-07T10:31:00+01:00",
+      "reported": {
+        "date": "2024-03-10T10:59:50+01:00",
+        "name": "A. Pecl / LWD Vlbg",
+        "email": "lawinenwarndienst@lwz-vorarlberg.at"
+      },
+      "involved": {
+        "dead": null,
+        "injured": null,
+        "uninjured": 1,
+        "sweeped": null,
+        "buried_partial": null,
+        "buried_total": null,
+        "equipment": {
+          "standard": {
+            "id": 0,
+            "text": "unknown"
+          },
+          "lvs": {
+            "id": 0,
+            "text": "unknown"
+          }
+        },
+        "ascent_descent": {
+          "id": 2,
+          "text": "descent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 2,
+          "level": 2,
+          "text": "moderate"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 150,
+          "width": 50
+        },
+        "breakheight": 20,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 1,
+          "text": "1: small avalanche"
+        },
+        "release": {
+          "id": 1,
+          "text": "artificial"
+        },
+        "humidity": {
+          "id": 0,
+          "text": "unknown"
+        }
+      },
+      "location": {
+        "name": "Güntlespitze",
+        "elevation": 2050,
+        "longitude": 10.07901,
+        "latitude": 47.30069,
+        "slope_angle": 40,
+        "aspect": {
+          "id": 1,
+          "text": "N"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "comments_en": "A small slab avalanche was triggered upon entering a very steep north-facing slope; Source: Feedback to the avalanche warning service"
+    }
+  },
+  {
+    "id": 10912,
+    "date": "2024-03-17 15:20:00",
+    "location": "Steinmandl / Schwarzwassertal",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.32991,
+    "lon": 10.0725,
+    "url": "https://lawis.at/incident/10912",
+    "details": {
+      "id": 10912,
+      "comments": "Von einer Schitourengruppe wurde ein Wechtenbruch und folglich eine nasse Lawine beobachtet. Da in der Sturzbahn Gegenstände mitgerissen wurden und für die Gruppe nicht ausgeschlossen war, dass womöglich Personen betroffen waren erfolgte eine Meldung und Sicherheitssuche. Diese verlief im Endeffekt negativ! Somit wurden auch keine genaueren Daten der Lawine erhoben. Quelle + Bild: PI Kleinwalsertal",
+      "valid_time": true,
+      "images": [
+        {
+          "url": "https://lawis.at/lawis_api/v2_3/files/incidents/incident_10912_000.jpg"
+        },
+        {
+          "url": "https://lawis.at/lawis_api/v2_3/files/incidents/incident_10912_001.jpg"
+        }
+      ],
+      "date": "2024-03-17T15:20:00+01:00",
+      "reported": {
+        "date": "2024-03-21T13:34:34+01:00",
+        "name": "A. Pecl / LWD Vlbg",
+        "email": "lawinenwarndienst@lwz-vorarlberg.at"
+      },
+      "involved": {
+        "dead": null,
+        "injured": null,
+        "uninjured": null,
+        "sweeped": null,
+        "buried_partial": null,
+        "buried_total": null,
+        "equipment": []
+      },
+      "danger": {
+        "rating": {
+          "id": 2,
+          "level": 2,
+          "text": "moderate"
+        },
+        "problem": {
+          "id": 4,
+          "text": "wet snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 350,
+          "width": null
+        },
+        "breakheight": null,
+        "type": {
+          "id": 4,
+          "text": "unknown"
+        },
+        "size": {
+          "id": 2,
+          "text": "2: medium avalanche"
+        },
+        "release": {
+          "id": 2,
+          "text": "spontaneous"
+        },
+        "humidity": {
+          "id": 0,
+          "text": "unknown"
+        }
+      },
+      "location": {
+        "name": "Steinmandl / Schwarzwassertal",
+        "elevation": 1900,
+        "longitude": 10.0725,
+        "latitude": 47.32991,
+        "slope_angle": 40,
+        "aspect": {
+          "id": 2,
+          "text": "NE"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "comments_en": "A group of ski tourers observed a cornice collapse, resulting in a wet avalanche. Because objects were swept along in the avalanche path and the group could not rule out the possibility that people were involved, they reported the incident and initiated a search for safety. This search ultimately proved unsuccessful. Therefore, no further data on the avalanche was collected. Source + Image: PI Kleinwalsertal"
+    }
+  },
+  {
+    "id": 10986,
+    "date": "2024-12-15 10:38:00",
+    "location": "Ifenmulde / Hirschegg",
+    "regionId": 2,
+    "subregionId": 82,
+    "lat": 47.35357,
+    "lon": 10.10523,
+    "url": "https://lawis.at/incident/10986",
+    "details": {
+      "id": 10986,
+      "comments": "Zwei  Schitourengeher (männlich 22 Jahre, weiblich 26 Jahre) wollten trotz schlechter Sicht und Witterung von der Bergstation Hahnenköpfle über die Ifenmulde und den Winteraufstieg auf den Hohen Ifen. Laut eigenen Angaben führten sie zuvor im freien Gelände oberhalb der Bergstation Hahnenköpfle einen ECT-Test durch und entschieden anhand dessen, nicht auf den Ifen aufzusteigen sondern über die Ifenmulde ins Tal abzufahren. Sie querten daraufhin in Abständen von ca. 30 m den ca. 35 Grad steilen Nordosthang im Bereich Ifenmulde. Daraufhin löste sich ca. 10 m oberhalb des vorausfahrenden Schitourengehers ein Schneebrett, welches ihn mitgerissen aber nicht verschüttet hat. Die Begleiterin wurde nicht mitgerissen. Die beiden meldeten den Lawinenabgang umgehend bei der RFL und setzen anschließend selbstständig ihre Fahrt fort. Quelle: Alpinpolizei / adapt. Text LWD Vlbg",
+      "not_buried": 2,
+      "valid_time": true,
+      "images": [
+        {
+          "url": "https://lawis.at/lawis_api/v2_3/files/incidents/incident_10986_000.jpg"
+        }
+      ],
+      "date": "2024-12-15T10:38:00+01:00",
+      "reported": {
+        "date": "2024-12-16T17:19:29+01:00",
+        "name": "A. Pecl / LWD Vlbg",
+        "email": "andreas.pecl@lwz-vorarlberg.at"
+      },
+      "involved": {
+        "dead": 0,
+        "injured": 0,
+        "uninjured": 2,
+        "sweeped": 1,
+        "buried_partial": 0,
+        "buried_total": 0,
+        "equipment": {
+          "standard": {
+            "id": 0,
+            "text": "unknown"
+          },
+          "lvs": {
+            "id": 0,
+            "text": "unknown"
+          },
+          "airbag": {
+            "id": 0,
+            "text": "unknown"
+          }
+        },
+        "ascent_descent": {
+          "id": 2,
+          "text": "descent"
+        }
+      },
+      "danger": {
+        "rating": {
+          "id": 3,
+          "level": 3,
+          "text": "considerable"
+        },
+        "problem": {
+          "id": 2,
+          "text": "wind-drifted snow"
+        }
+      },
+      "avalanche": {
+        "extent": {
+          "length": 170,
+          "width": 60
+        },
+        "breakheight": 35,
+        "type": {
+          "id": 1,
+          "text": "slab"
+        },
+        "size": {
+          "id": 2,
+          "text": "2: medium avalanche"
+        },
+        "release": {
+          "id": 0,
+          "text": "unknown"
+        },
+        "humidity": {
+          "id": 0,
+          "text": "unknown"
+        }
+      },
+      "location": {
+        "name": "Ifenmulde / Hirschegg",
+        "elevation": 2080,
+        "longitude": 10.10523,
+        "latitude": 47.35357,
+        "slope_angle": 35,
+        "aspect": {
+          "id": 2,
+          "text": "NE"
+        },
+        "country": {
+          "id": 1,
+          "code": "AT",
+          "text": "Österreich"
+        },
+        "region": {
+          "id": 2,
+          "text": "Vorarlberg"
+        },
+        "subregion": {
+          "id": 82,
+          "text": "Allgäuer Alpen"
+        }
+      },
+      "comments_en": "Two ski tourers (male, 22 years old; female, 26 years old) intended to ascend the Hoher Ifen from the Hahnenköpfle mountain station via the Ifenmulde and the winter ascent route, despite poor visibility and weather conditions. According to their own statements, they had previously conducted an ECT test in the open terrain above the Hahnenköpfle mountain station and, based on this, decided not to ascend the Ifen but to descend to the valley via the Ifenmulde. They then traversed the approximately 35-degree steep northeast-facing slope in the Ifenmulde area at intervals of about 30 meters. At that moment, a slab avalanche released about 10 meters above the ski tourer in front, sweeping him along but not burying him. His companion was not caught in the avalanche. The two immediately reported the avalanche to the RFL (Regional Ski Association) and then continued their descent independently. Source: Alpine Police / adapted text LWD Vlbg"
+    }
+  }
+]
