@@ -186,10 +186,16 @@ const main = async () => {
             archive = JSON.parse(fs.readFileSync(OUTPUT_FILE, 'utf8'));
         }
 
+        // Format Issued String (e.g. "Monday, 12.01.2026, at 14.30")
+        const dayStr = issuedDate.toLocaleDateString('en-GB', { weekday: 'long' });
+        const dateStr = issuedDate.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        const timeStr = issuedDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }).replace(':', '.');
+        const formattedIssued = `${dayStr}, ${dateStr}, at ${timeStr}`;
+
         const newEntry = {
             date: targetDateStr,
             title: `Mountain Weather Report (${targetDateStr})`,
-            issued: issuedDate.toISOString(),
+            issued: formattedIssued,
             html_content: content,
             translated_content: translatedHtml || content, // Fallback to original
             fetched_at: new Date().toISOString()

@@ -129,31 +129,43 @@ async function processBulletinForPdfs(bulletin, dateStr, sourceType = 'lawinen-w
                 if (isDifferent) {
                     console.log(`  Update detected for ${slug}/${dateStr}.pdf!`);
 
-                    // Find next version suffix
-                    let version = 2;
-                    let versionDest = path.join(dataDir, 'pdfs', slug, `${dateStr}_v${version}.pdf`);
-                    while (fs.existsSync(versionDest)) {
-                        // Check if this version is identical to new one? 
-                        // If we run script 5 times, we don't want v2, v3, v4 all identical.
-                        // Compare new temp with LAST version?
-                        const bufLast = fs.readFileSync(versionDest);
-                        const bufNew = fs.readFileSync(tempDest);
-                        if (bufLast.equals(bufNew)) {
-                            // Identical to an existing version, so ignore
-                            console.log(`  Update matches existing ${dateStr}_v${version}.pdf. Skipping.`);
-                            isDifferent = false;
-                            break;
+                    let suffix = '_v2';
+                    if (bulletin.publicationTime) {
+                        try {
+                            const d = new Date(bulletin.publicationTime);
+                            const y = d.getUTCFullYear();
+                            const m = String(d.getUTCMonth() + 1).padStart(2, '0');
+                            const day = String(d.getUTCDate()).padStart(2, '0');
+                            const H = String(d.getUTCHours()).padStart(2, '0');
+                            const M = String(d.getUTCMinutes()).padStart(2, '0');
+                            suffix = `_${y}${m}${day}-${H}${M}`;
+                        } catch (err) {
+                            console.error('Error formatting publicationTime for suffix:', err);
                         }
+                    }
 
-                        version++;
-                        versionDest = path.join(dataDir, 'pdfs', slug, `${dateStr}_v${version}.pdf`);
+                    let versionDest = path.join(dataDir, 'pdfs', slug, `${dateStr}${suffix}.pdf`);
+
+                    // Check if this specific version already exists
+                    if (fs.existsSync(versionDest)) {
+                        const bufExisting = fs.readFileSync(versionDest);
+                        const bufNew = fs.readFileSync(tempDest);
+                        if (bufExisting.equals(bufNew)) {
+                            console.log(`  Update matches existing ${dateStr}${suffix}.pdf. Skipping.`);
+                            isDifferent = false;
+                        } else {
+                            // Same timestamp but different content? Extremely rare. 
+                            // Fallback to appending v2 to the timestamp
+                            suffix += '_v2';
+                            versionDest = path.join(dataDir, 'pdfs', slug, `${dateStr}${suffix}.pdf`);
+                        }
                     }
 
                     if (isDifferent) {
                         fs.renameSync(tempDest, versionDest);
-                        console.log(`  Archived update as: ${slug}/${dateStr}_v${version}.pdf`);
+                        console.log(`  Archived update as: ${slug}/${dateStr}${suffix}.pdf`);
                     } else {
-                        // Was duplicate of a version
+                        // Was duplicate
                         fs.unlinkSync(tempDest);
                     }
                 } else {

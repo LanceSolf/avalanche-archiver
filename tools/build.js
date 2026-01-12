@@ -199,8 +199,29 @@ const REGION_CONFIG = {
                 `${config.label} - ${getMonthName(month)}`,
                 `../../../`,
                 sortedDates.map(d => {
+                    let displayText = d;
+                    const parts = d.split('_');
+                    if (parts.length > 1) {
+                        const baseDate = parts[0]; // 2026-01-12
+                        const suffix = parts[1];   // 20260111-1600 or v2
+
+                        // Check for timestamp format YYYYMMDD-HHMM
+                        const tsMatch = suffix.match(/^(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})$/);
+                        if (tsMatch) {
+                            const [_, y, m, day, h, min] = tsMatch;
+                            const updateDate = new Date(Date.UTC(y, m - 1, day, h, min));
+                            const formatted = updateDate.toLocaleDateString('en-GB', {
+                                day: 'numeric', month: 'short', year: 'numeric',
+                                hour: '2-digit', minute: '2-digit', second: '2-digit'
+                            });
+                            displayText = `${baseDate} <span style="font-size:0.85em; color:#666; font-weight:normal;">Updated ${formatted}</span>`;
+                        } else if (suffix.startsWith('v')) {
+                            displayText = `${baseDate} (Version ${suffix.substring(1)})`;
+                        }
+                    }
+
                     const item = {
-                        text: d, // The date string (e.g. 2025-01-01)
+                        text: displayText, // The date string (e.g. 2026-01-12 Updated...)
                         href: `${d}.pdf`
                     };
 
@@ -211,23 +232,6 @@ const REGION_CONFIG = {
                             text: 'Mountain Weather',
                             href: `../../weather/${d}.html`
                         };
-                    } else {
-                        // Fallback to live link if date is recent (e.g. today or future)
-                        // Simple check: if date is not in archive, standard link?
-                        // Only sensible for the 'latest' or current bulletin. 
-                        // But users might browse old bulletins. Link to live site for old dates is wrong.
-                        // So only for dates >= today - 1 day?
-                        const dateObj = new Date(d);
-                        const now = new Date();
-                        const diffTime = Math.abs(now - dateObj);
-                        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-                        if (diffDays <= 2) {
-                            item.extraLink = {
-                                text: 'Mountain Weather (Live)',
-                                href: 'https://lawinenwarndienst.bayern.de/schnee-wetter-bayern/bergwetterbericht-bayern/'
-                            };
-                        }
                     }
                     return item;
                 }),
@@ -416,6 +420,7 @@ function generateIndexPage(title, relativeRoot, items, isMain = false, backLink 
         </header>
 
         <h1>${title}</h1>
+        ${!isMain ? `<div style="margin-bottom:1rem"><a href="${backLink}">&larr; Back</a></div>` : ''}
         <div class="archive-list">
             ${items.map(item => `
                 <a href="${item.href}" class="archive-item ${item.className || ''}" style="display:flex; flex-direction:column; align-items:flex-start;">
@@ -490,6 +495,8 @@ function generateProfilesPage(profiles) {
              <iframe src="map.html" width="100%" height="100%" style="border:none;"></iframe>
         </div>
         
+        <div style="margin-bottom: 1rem;"><a href="../../index.html">&larr; Back</a></div>
+
         <div class="profile-list">
             ${allProfileItems}
         </div>
@@ -708,12 +715,10 @@ function generateProfileDetailPage(p) {
             <div class="header-content">
                  <a href="../../index.html" class="logo">Avalanche Archive</a>
             </div>
-            <nav>
-                <a href="map.html" style="font-weight:bold;">View Map</a>
-            </nav>
         </header>
         
         <h1>${title}</h1>
+        <div style="margin-bottom: 1rem;"><a href="index.html">&larr; Back</a></div>
         <div class="meta-item"><strong>Date:</strong> ${date}</div>
         <div class="meta-item"><strong>Elevation:</strong> ${p.seehoehe}m</div>
         <div class="meta-item"><strong>Location:</strong> <a href="map.html?lat=${p.latitude}&lon=${p.longitude}" style="color:#0284c7; text-decoration:underline;">${p.latitude}, ${p.longitude}</a></div>
