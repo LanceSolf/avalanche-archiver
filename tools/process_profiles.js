@@ -171,6 +171,8 @@ function getDistance(lat1, lon1, lat2, lon2) {
                         dist_km: dist.toFixed(3),
                         elevation: p.seehoehe,
                         aspect: p.exposition, // or expo? need to verify field
+                        latitude: p.latitude,
+                        longitude: p.longitude,
                         url: imgUrl,
                         local_path: localPath
                     });

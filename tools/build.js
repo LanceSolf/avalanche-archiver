@@ -329,6 +329,18 @@ function generateProfilesPage(profiles) {
         </div>
     `).join('');
 
+    // Add Static "More" Card
+    const lawisCard = `
+        <div class="station-card" style="border: 2px dashed #bae6fd; background: #f0f9ff; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+             <div style="font-size:3rem; margin-bottom:1rem;">🇦🇹</div>
+             <h2 class="station-name" style="margin-bottom:0.5rem;">See All Profiles</h2>
+             <p style="color:#666; margin-bottom:1rem;">View full database on Lawis.at</p>
+             <a href="https://lawis.at/profile/" target="_blank" class="source-link" style="font-size:1.1rem;">Go to Lawis &rarr;</a>
+        </div>
+    `;
+
+    const allProfileItems = profileItems + lawisCard;
+
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -361,7 +373,7 @@ function generateProfilesPage(profiles) {
         </div>
         
         <div class="profile-list">
-            ${profileItems}
+            ${allProfileItems}
         </div>
         <div style="margin-top:2rem"><a href="../../index.html">&larr; Back</a></div>
     </div>
@@ -431,11 +443,20 @@ function generateIncidentPage(inc) {
             <div style="display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top:1rem;">
                 ${inc.linked_profiles.map(p => {
             const imgUrl = p.local_path ? `../${p.local_path}` : p.url;
+            // Create map link if coordinates exist
+            let distDisplay = `${p.dist_km} km away`;
+            if (p.latitude && p.longitude) {
+                // Link to local interactive map with query params
+                distDisplay = `<a href="../profiles/map.html?lat=${p.latitude}&lon=${p.longitude}" target="_blank" style="color:#0284c7; text-decoration:underline;" title="View on Interactive Map">📍 ${p.dist_km} km away</a>`;
+            } else {
+                distDisplay = `<span style="color:#0284c7;">${p.dist_km} km away</span>`;
+            }
+
             return `
                     <div style="background:#f0f9ff; padding:1rem; border-radius:8px; border:1px solid #bae6fd;">
                         <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
                             <strong>${p.date.split(' ')[0]}</strong>
-                            <span style="color:#0284c7;">${p.dist_km} km away</span>
+                            ${distDisplay}
                         </div>
                         <div style="font-size:0.9rem; margin-bottom:0.5rem;">
                             Elev: ${p.elevation}m | Aspect: ${translateAspect(p.aspect)}
@@ -526,7 +547,7 @@ function generateIncidentPage(inc) {
             ${galleryHtml}
             
             <div class="incident-links" style="text-align:center;">
-                <a href="https://lawis.at/incident/" target="_blank" style="color:#666; text-decoration:underline;">Original Source (Lawis Austria)</a>
+                <a href="${inc.url}" target="_blank" style="color:#666; text-decoration:underline;">Source: Lawis Austria</a>
             </div>
         </div>
 
@@ -578,7 +599,7 @@ function generateProfileDetailPage(p) {
         </div>
 
         <div style="margin-top:2rem; text-align:center;">
-            <a href="https://lawis.at/profile/${p.profil_id}" target="_blank">Original on Lawis.at</a>
+            <a href="https://lawis.at/profile/${p.profil_id}" target="_blank" style="color:#666; text-decoration:underline;">Source: Lawis Austria</a>
         </div>
         
         <div style="margin-top:2rem"><a href="map.html">&larr; Back to Map</a> | <a href="index.html">List View</a></div>

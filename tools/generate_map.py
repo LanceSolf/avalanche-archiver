@@ -30,7 +30,7 @@ def generate_map():
     center_lat = 47.4099
     center_lon = 10.2797
     
-    m = folium.Map(location=[center_lat, center_lon], zoom_start=11, tiles='OpenStreetMap')
+    m = folium.Map(location=[center_lat, center_lon], zoom_start=10, tiles='OpenStreetMap')
 
     now = datetime.now()
 
@@ -71,6 +71,34 @@ def generate_map():
 
     # Add Legend/Title? 
     # Folium map is simple. Let's keep it clean.
+    
+    # Add JS to handle URL parameters for centering
+    # This script finds the Leaflet map instance and updates the view if lat/lon params are present
+    js_script = """
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const lat = parseFloat(urlParams.get('lat'));
+        const lon = parseFloat(urlParams.get('lon'));
+        if (!isNaN(lat) && !isNaN(lon)) {
+            // Wait slightly for map var to initialize if needed, though DOMContentLoaded is usually enough
+            setTimeout(() => {
+                for (let key in window) {
+                    if (window[key] instanceof L.Map) {
+                        window[key].setView([lat, lon], 15);
+                        // Add a marker at the centered location
+                        L.marker([lat, lon]).addTo(window[key])
+                          .bindPopup("<b>Incident Profile Location</b>")
+                          .openPopup();
+                        break;
+                    }
+                }
+            }, 500);
+        }
+    });
+    </script>
+    """
+    m.get_root().html.add_child(folium.Element(js_script))
     
     # Ensure directory exists
     os.makedirs(os.path.dirname(MAP_OUTPUT), exist_ok=True)
