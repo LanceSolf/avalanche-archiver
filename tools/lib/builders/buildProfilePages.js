@@ -188,7 +188,7 @@ function buildProfilePages() {
             ${recentProfiles.map(p => {
         const hs = getHS(p.profile);
         const tests = formatTests(p.stability_tests);
-        const comments = translateComments(p.comments);
+        const comments = p.comments_en || translateComments(p.comments);
 
         return `
             <div class="station-card">

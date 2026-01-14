@@ -38,6 +38,8 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Fetch all data
+        env:
+          GCP_TRANSLATE_KEY: ${{ secrets.GCP_TRANSLATE_KEY }}
         run: npm run fetch:all
 
       - name: Build site
