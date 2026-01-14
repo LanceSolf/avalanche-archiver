@@ -1,67 +1,67 @@
-# Avalanche Bulletin Archive
+# Avalanche Archiver & Dashboard
 
-This project automatically archives avalanche bulletins from Avalanche.report for the Allgäu Alps region (DE-BY-11, DE-BY-12, DE-BY-10), starting from 2026-01-01.
+A comprehensive, automated archive for avalanche bulletins, weather data, snow profiles, and incident reports for the **Allgäu and Kleinwalsertal** regions.
 
-## Project Structure
+---
 
-- `archive/`: Generated static HTML bulletin pages.
-- `assets/`: Offline icons and images.
-- `data/`: Raw JSON and XML data fetched from the source.
-- `tools/`: Node.js scripts for fetching, building, and PDF generation.
-- `index.html`: Landing page listing all archived bulletins.
+## 🤖 Automation
 
-## Setup
+The site is updated automatically **3 times per day** (06:00, 14:00, 18:00 CET) via GitHub Actions.
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
+### Workflow: `daily-fetch.yml`
+1.  **Fetch Data**: Runs `npm run fetch:all`, which executes a sequence of scripts:
+    *   `fetch_daily.js`: Downloads latest avalanche bulletins (PDFs and JSON).
+    *   `fetch_weather.js`: Retreives raw telemetry from local weather stations.
+    *   `fetch_weather_report.js`: Archives the daily text weather report.
+    *   `fetch_lawis_incidents.js`: Scrapes Lawis.at for new incident reports and images.
+    *   `process_profiles.js`: Fetches wide-range snow profile data.
+    *   `enrich_profiles.js`: **Translates** comments (German -> English) using Google Cloud API and parses stability tests.
+2.  **Build Site**: Runs `npm run build` to generate static HTML pages.
+3.  **Deploy**: Commits changes to the `master` branch, triggering a GitHub Pages deployment.
 
-## How to Run the Archiver
+### Secrets
+*   `GCP_TRANSLATE_KEY`: Required for translating avalanche problems and profile comments.
 
-The archiving process consists of two steps: fetching data and building the site.
+---
 
-1. **Fetch Data**: Downloads the latest bulletins (JSON/XML) and assets.
-   ```bash
-   node tools/fetch-assets.js
-   node tools/fetch-data.js
-   ```
+## 🗺️ Site Overview
 
-2. **Build Site**: Generates static HTML pages from the fetched data.
-   ```bash
-   node tools/build.js
-   ```
+### 1. **Archive Home (`/index.html`)**
+The main dashboard providing a snapshot of the current status:
+*   **Latest Bulletin**: Quick links to today's Allgäu/Kleinwalsertal reports.
+*   **Recent Incidents**: Cards showing accidents within the last 72 hours.
+*   **Latest Profiles**: A grid of snow profiles from the last 2 days.
 
-## How to Run the PDF Generator
+### 2. **Snow Depth Map (`/snow-depth/index.html`)**
+An interactive dashboard visualization of raw station data:
+*   **Interactive Map**: Markers for all tracking stations. Clicking a marker shows a "Pin" with the station name and a link to its data.
+*   **Data Cards**: Detailed 48-hour charts for Snow Height (HS), Air Temp from stations like *Warth*, *Fellhorn*, *Nebelhorn*, and *Ifen*.
 
-To generate PDF versions of all archived HTML pages:
+### 3. **Snow Profiles (`/archive/profiles/index.html`)**
+A dedicated feed of recent snow pits from Lawis.at:
+*   **Smart Parsing**: Automatically extracts Snow Height (HS) even if not explicitly labeled.
+*   **Stability Tests**: Visualizes ECT/CT results with colour-coded tags (Green for "No Fracture", Red for "Propagation").
+*   **Translation**: Automatically translates observer comments into English.
+*   **Map Integration**: View profile locations on an interactive relief map.
 
-```bash
-node tools/generate-pdf.js
-```
-This script uses Puppeteer to render each page and save it as a `.pdf` file in the `archive/` directory.
+### 4. **Incidents (`/archive/incidents/`)**
+A permanent record of avalanche accidents:
+*   **Context**: Each report includes relevant weather history (charts) and nearby snow profiles from the time of the incident.
+*   **PDF Archive**: Links to the official avalanche bulletin from that specific day.
+*   **Translation**: Description text is translated to English.
 
-## How to Serve the Site Locally
+### 5. **Weather Archive (`/archive/weather/`)**
+A chronological text archive of daily mountain weather reports.
 
-You can serve the static files using a simple HTTP server. If you have Python installed:
+---
 
-```bash
-python -m http.server
-```
-Then open `http://localhost:8000` in your browser.
+## 🛠️ Local Development
 
-Alternatively, use `npx serve`:
-```bash
-npx serve .
-```
-
-## How to Deploy to GitHub Pages
-
-1. Initialize a git repository (if not already done).
-2. Commit your changes.
-3. Push to GitHub.
-4. Go to your repository **Settings** -> **Pages**.
-5. Select the **main** branch (or master) and root folder `/` as the source.
-6. The site will be deployed at `https://<username>.github.io/<repo-name>/`.
-
-**Note onto Automation**: You can set up a GitHub Action to run `node tools/fetch-data.js` and `node tools/build.js` daily to keep the archive up to date automatically.
+1.  **Install**: `npm install`
+2.  **Configuration**: Create a `.env` file with your keys:
+    ```env
+    GOOGLE_TRANSLATE_KEY=your_key_here
+    ```
+3.  **Fetch Data**: `npm run fetch:all`
+4.  **Build**: `npm run build`
+5.  **Serve**: `npm run serve` (runs at `http://localhost:3000`)
