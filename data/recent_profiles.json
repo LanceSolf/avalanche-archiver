@@ -20,6 +20,7 @@
     "aspect": 3,
     "exposition": 3,
     "comments": "ECTN 12@21.0cm: Teilbruch (N) (1)\nECTN 12@21.0cm: Teilbruch (N) (2)",
+    "comments_en": "ECTN 12@21.0cm: Partial fraction (N) (1)\nECTN 12@21.0cm: Partial fraction (N) (2)",
     "stability_tests": [
       {
         "type": {
@@ -56,28 +57,6 @@
     "hangneigung": 35,
     "exposition_id": 1,
     "loggedon": "2026-01-12 13:49:17",
-    "revision": 2,
-    "comments": "ECT 31: No break\nCT (KB) 2@60cm\nProfil im Bereich der Anrisskante einer mittelgroßen Lawine vom Vortag – ausgelöst durch einzelnen Skifahrer",
-    "stability_tests": [
-      {
-        "type": {
-          "text": "ECT"
-        },
-        "step": 31,
-        "result": {
-          "text": "no break"
-        }
-      },
-      {
-        "type": {
-          "text": "CT"
-        },
-        "step": 2,
-        "height": 60,
-        "result": {
-          "text": "no break (KB)"
-        }
-      }
-    ]
+    "revision": 2
   }
 ]

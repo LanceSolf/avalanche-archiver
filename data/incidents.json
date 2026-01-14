@@ -639,6 +639,7 @@
         "exposition": 4,
         "exposition_id": 4,
         "comments": "ECTN 23@80.0cm: Teilbruch (N)",
+        "comments_en": "ECTN 23@80.0cm: Partial fraction (N)",
         "stability_tests": [
           {
             "type": {
@@ -777,6 +778,7 @@
         "exposition": 3,
         "exposition_id": 3,
         "comments": "eingewehter Bereich unterhalb Grat;\nCT 12@130.0cm: Bruch mit Widerstand glatt (RP)\nCT 22@50.0cm: plötzlicher Bruch glatt (SP)\nCT 24@50.0cm: plötzlicher Bruch glatt (SP)\nECT 31: kein Bruch",
+        "comments_en": "Wind-encrusted area below ridge;\n\nCT 12@130.0cm: Resistive fracture, smooth (RP)\n\nCT 22@50.0cm: Sudden fracture, smooth (SP)\n\nCT 24@50.0cm: Sudden fracture, smooth (SP)\n\nECT 31: No fracture",
         "stability_tests": [
           {
             "type": {
@@ -808,7 +810,8 @@
         "aspect": 2,
         "exposition": 2,
         "exposition_id": 2,
-        "comments": "Profilaufnahme am Anriss (Rand) des Lawinenabgangs vom 15.12.19 / 11:40 Uhr ca. 30 Meter unterhalb des mögl. Auslösepunkts des Schneebrett (Breite variert von 50 bis 90 Meter, Länge 400 mtr\n2. Versuch ergab fast gleiches Ergebniss"
+        "comments": "Profilaufnahme am Anriss (Rand) des Lawinenabgangs vom 15.12.19 / 11:40 Uhr ca. 30 Meter unterhalb des mögl. Auslösepunkts des Schneebrett (Breite variert von 50 bis 90 Meter, Länge 400 mtr\n2. Versuch ergab fast gleiches Ergebniss",
+        "comments_en": "Profile survey at the fracture line (edge) of the avalanche on December 15, 2019 / 11:40 AM, approximately 30 meters below the possible trigger point of the slab avalanche (width varies from 50 to 90 meters, length 400 meters).\n\nA second attempt yielded almost the same result."
       },
       {
         "id": 10972,
@@ -828,7 +831,8 @@
         "aspect": 5,
         "exposition": 5,
         "exposition_id": 5,
-        "comments": "CT 1@65.0cm: plötzlicher Bruch glatt (SP) Ohne CT test nicht festgestellte Schicht 65 - 64,5. CT Test wiederholt, gleiches Ergebnis"
+        "comments": "CT 1@65.0cm: plötzlicher Bruch glatt (SP) Ohne CT test nicht festgestellte Schicht 65 - 64,5. CT Test wiederholt, gleiches Ergebnis",
+        "comments_en": "CT 1@65.0cm: sudden smooth fracture (SP). Without CT test, layer 65-64.5 was not detected. CT test repeated, same result."
       }
     ],
     "pdf_path": "incident_bulletins/allgau-alps-east/2019-12/2019-12-15.pdf"
@@ -963,6 +967,7 @@
         "exposition": 2,
         "exposition_id": 2,
         "comments": "ECTP 14 bei 37 cm\nProfil nach Schneebrettabgang mit Personenbeteiligung,\neine Person mitgerissen, nicht verschüttet, unverletzt.\nECTP 14@37.0cm: plötzlicher Bruch (P) (ganzer Block)",
+        "comments_en": "ECTP 14 at 37 cm\nProfile after a slab avalanche involving a person,\none person swept away, not buried, uninjured.\n\nECTP 14@37.0cm: sudden fracture (P) (entire block)",
         "stability_tests": [
           {
             "type": {
@@ -1836,6 +1841,7 @@
         "exposition": 8,
         "exposition_id": 8,
         "comments": "Schneeprofilaufnahme im Zuge eines Lawineneinsatzes an der Nordwest-Seite des Steinmandl, ca. 50 Meter unterhalb des Gipfels. Schneebrett wurde durch einen Skifahrer ausgelöst welcher ca. 30 Meter mitgerissen wurde und anschließend weiter fuhr. Meldung durch Zeugen im Bereich Hählekopf. \n\nECTN 7@70.0cm: Teilbruch (N)\n\nAuffallend starke Unterschiede der Mächtigkeit der Schneedecke in diesem Hang aufgrund vorangegangener Verfrachtungen",
+        "comments_en": "Snow profile taken during an avalanche rescue operation on the northwest face of the Steinmandl, approximately 50 meters below the summit. The avalanche was triggered by a skier who was carried approximately 30 meters and then continued skiing. The incident was reported by witnesses in the Hählekopf area.\n\nECTN 7@70.0cm: Partial fracture (N)\n\nStrikingly large variations in snowpack thickness on this slope are evident due to previous drifting.",
         "stability_tests": [
           {
             "type": {
@@ -2277,6 +2283,7 @@
         "exposition": 2,
         "exposition_id": 2,
         "comments": "ECTP 11@76.0cm: plötzlicher Bruch (P) (ganzer Block)",
+        "comments_en": "ECTP 11@76.0cm: sudden break (P) (entire block)",
         "stability_tests": [
           {
             "type": {
@@ -2425,6 +2432,7 @@
         "exposition": 1,
         "exposition_id": 1,
         "comments": "Profil im Bereich der Anrisskante einer mittelgroßen Lawine vom Vortag - ausgelöst durch einzelnen Skifahrer\n\nECT 31: kein Bruch\nKB 2@60.0cm: Bruch glatt",
+        "comments_en": "Profile in the area of the crown edge of a medium-sized avalanche from the previous day – triggered by a single skier\n\nECT 31: no fracture\nKB 2@60.0cm: smooth fracture",
         "stability_tests": [
           {
             "type": {
