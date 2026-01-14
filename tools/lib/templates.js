@@ -204,7 +204,7 @@ function generateWeatherPage(w, content) {
 <body>
     <div class="container">
         <header><div class="header-content"><a href="../../index.html" class="logo">Avalanche Archive</a></div></header>
-        <div style="margin-bottom:1rem;"><a href="index.html">&larr; Back</a></div>
+        <div style="margin-bottom:1rem;"><a href="#" onclick="history.back(); return false;">&larr; Back</a></div>
         <h1>Mountain Weather Report</h1>
         <h2 style="color: #666; font-weight: 400;">${w.date} (Issued: ${w.issued})</h2>
         <div class="weather-content">
