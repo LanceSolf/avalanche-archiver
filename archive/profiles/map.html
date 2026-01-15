@@ -189,7 +189,7 @@
                     });
                     
                     // Add Recent Profiles
-                    const profiles = [{"profil_id":24428,"datum":"2026-01-13 13:10:00","country_id":1,"region_id":1,"subregion_id":164,"ort":"Fürmesgumpalpe","seehoehe":2300,"latitude":47.19177,"longitude":10.20271,"hangneigung":40,"exposition_id":3,"loggedon":"2026-01-13 14:49:33","revision":1,"location":"Fürmesgumpalpe","elevation":2300,"slope":40,"neigung":40,"aspect":3,"exposition":3,"comments":"ECTN 12@21.0cm: Teilbruch (N) (1)\nECTN 12@21.0cm: Teilbruch (N) (2)","comments_en":"ECTN 12@21.0cm: Partial fraction (N) (1)\nECTN 12@21.0cm: Partial fraction (N) (2)","stability_tests":[{"type":{"text":"ECT"},"step":12,"height":21,"result":{"text":"no propagation (N)"}},{"type":{"text":"ECT"},"step":12,"height":21,"result":{"text":"no propagation (N)"}}]}];
+                    const profiles = [];
                     profiles.forEach(p => {
                         if (p.latitude && p.longitude) {
                             const marker = L.circleMarker([p.latitude, p.longitude], {
