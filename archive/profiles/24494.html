@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile: Liechelkopf</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .profile-image-container { margin-top: 2rem; text-align: center; }
+        .profile-image img { max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .back-link { margin-bottom: 1rem; display: block; color: var(--primary-blue); text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header><div class="header-content"><a href="../../index.html" class="logo">Avalanche Archive</a></div></header>
+        
+        <a href="index.html" id="dynamic-back-link" class="back-link">&larr; Back</a>
+
+        <h1>Snow Profile: Liechelkopf</h1>
+        <div class="profile-image-container">
+            <div class="profile-image">
+                <a href="images/snowprofile_24494.png" target="_blank">
+                    <img src="images/snowprofile_24494.png" alt="Snow Profile Image">
+                </a>
+            </div>
+            <a href="https://lawis.at" target="_blank" class="lawis-link">View on LAWIS.at</a>
+        </div>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const backUrl = urlParams.get('back');
+        if (backUrl) {
+            const link = document.getElementById('dynamic-back-link');
+            if (link) {
+                link.href = backUrl;
+                if (backUrl.includes('map.html')) {
+                    link.innerHTML = '&larr; Back to Map';
+                    
+                    // Check for incident context in the map URL
+                    try {
+                        const mapQuery = backUrl.split('?')[1];
+                        if (mapQuery) {
+                            const mapParams = new URLSearchParams(mapQuery);
+                            const incFilename = mapParams.get('incFilename');
+                            if (incFilename) {
+                                // Create secondary link back to incident
+                                const incUrl = '../incidents/' + incFilename;
+                                const incLink = document.createElement('a');
+                                incLink.href = incUrl;
+                                incLink.className = 'back-link';
+                                incLink.innerHTML = '&larr; Back to Incident';
+                                incLink.style.marginTop = '0'; // Reduce gap slightly if needed, but default margin is fine
+                                
+                                // Insert after the Map link
+                                link.parentNode.insertBefore(incLink, link.nextSibling);
+                            }
+                        }
+                    } catch (e) {
+                        console.error('Error parsing back URL params', e);
+                    }
+
+                } else if (backUrl.includes('incidents')) {
+                    link.innerHTML = '&larr; Back to Incident';
+                } else {
+                    link.innerHTML = '&larr; Back';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
