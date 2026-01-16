@@ -1,5 +1,13 @@
 [
   {
+    "date": "2026-01-17",
+    "title": "Mountain Weather Report (2026-01-17)",
+    "issued": "Friday, 16/01/2026, at 14.30",
+    "html_content": "<div class=\"panel-body weather-report lwdb-p\"><span class=\"lwdb-p-small-weather\">Deutscher Wetterdienst - Regionale Wetterberatung München, ausgegeben</span><br><span class=\"lwdb-p-black lwdb-p-black-weather\">am Freitag, den 16.01.2026, um 14.30 Uhr</span><br><br><span class=\"lwdb-h2 lwdb-h2-weather-1\">Wetterbericht für den Deutschen Alpenraum:</span><br><br>Ein nachhaltiges Hoch bestimmt das Wetter in Bayern. Aus Osten fließt in der Höhe vorübergehend noch mildere Luft ein.<br><br>In der Nacht zum Samstag ist der Himmel teils klar, teils ziehen  dünne Schleierwolken durch. Die Tiefstwerte liegen bei schwachem  Südwind in 1500 m um 2, in 3000 m um -5 Grad.<br><br>Am Samstag wird die Sonne von hohen Wolkenfeldern zwischendurch  leicht abgeschirmt, am Alpenrand ist lokal Hochnebel möglich. Die  Temperatur steigt in 1500 m bis 7, auf der Zugspitze bis -1 Grad. Der Wind kommt mit mittleren Geschwindigkeiten von 20 - 40 km/h aus  südlichen Richtungen.<br><br>Weitere Aussichten bis zum Montag, 19.01.2026: Sonntag und Montag schwacher Föhn. Dabei trotz hoher Wolkenfelder  vielfach sonnig. </div>",
+    "translated_content": "<div class=\"panel-body weather-report lwdb-p\"><span class=\"lwdb-p-small-weather\">German Weather Service - Regional Weather Advisory Service Munich, issued</span><br> <span class=\"lwdb-p-black lwdb-p-black-weather\">on Friday, January 16, 2026, at 2:30 p.m.</span><br><br> <span class=\"lwdb-h2 lwdb-h2-weather-1\">Weather forecast for the German Alps:</span><br><br> A persistent high-pressure system is dominating the weather in Bavaria. Milder air is temporarily flowing in from the east at higher altitudes.<br><br> Overnight into Saturday, the sky will be partly clear, with some thin cirrus clouds passing through. Lows will be around 2 degrees Celsius at 1500 meters and around -5 degrees Celsius at 3000 meters, with a light southerly wind.<br><br> On Saturday, the sun will be partially obscured by high clouds at times, and patchy fog is possible along the edge of the Alps. Temperatures will reach up to 7 degrees Celsius at 1500 meters and down to -1 degree Celsius on the Zugspitze. Winds will blow from the south at average speeds of 20-40 km/h.<br><br> Further outlook until Monday, January 19, 2026: Weak foehn winds on Sunday and Monday. Despite high cloud cover, mostly sunny.</div>",
+    "fetched_at": "2026-01-16T17:16:53.541Z"
+  },
+  {
     "date": "2026-01-16",
     "title": "Mountain Weather Report (2026-01-16)",
     "issued": "Thursday, 15/01/2026, at 14.30",
