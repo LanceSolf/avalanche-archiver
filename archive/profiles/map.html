@@ -189,7 +189,7 @@
                     });
                     
                     // Add Recent Profiles
-                    const profiles = [{"profil_id":24494,"datum":"2026-01-15 10:15:00","country_id":1,"region_id":2,"subregion_id":82,"ort":"Liechelkopf","seehoehe":2065,"latitude":47.29743,"longitude":10.18351,"hangneigung":30,"exposition_id":2,"loggedon":"2026-01-16 12:18:04","revision":1,"location":"Liechelkopf","elevation":2065,"slope":30,"neigung":30,"aspect":2,"exposition":2,"comments":"Nur bis 90 cm gegraben.\n\nECTN 11@173.0cm: Teilbruch (N)","comments_en":"Excavated only to a depth of 90 cm.\n\nECTN 11@173.0 cm: Partial fracture (N)","stability_tests":[{"type":{"text":"ECT"},"step":11,"height":173,"result":{"text":"no propagation (N)"}}]}];
+                    const profiles = [];
                     profiles.forEach(p => {
                         if (p.latitude && p.longitude) {
                             const marker = L.circleMarker([p.latitude, p.longitude], {
